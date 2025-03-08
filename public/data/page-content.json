@@ -1,0 +1,314 @@
+{
+  "siteTitle": "Saffron Time Dev",
+  "heroSection": {
+    "title": "প্রথম রাতেই আপনার স্ত্রী হার মানবে",
+    "subtitle": "দ্রুত বীর্যপাত আর হবে না ২৫ থেকে ৩০ মিনিট পর্যন্ত আপনার স্ত্রীর তৃপ্তি দিতে পারবেন।",
+    "ctaButton": {
+      "text": "অর্ডার করতে ক্লিক করুন",
+      "icon": "far-hand-point-right",
+      "link": "#order"
+    }
+  },
+  "pricingSection": {
+    "checkPriceButton": {
+      "text": "মূল্য সম্পর্কে জানুন",
+      "link": "#order"
+    },
+    "regularPrice": {
+      "label": "রেগুলার মূল্যঃ",
+      "amount": "১৯৯০",
+      "amount_in_english": "1990",
+      "currency": "টাকা"
+    },
+    "offerPrice": {
+      "label": "বর্তমান অফার মূল্যঃ",
+      "amount": "১৪৯০",
+      "amount_in_english": "1490",
+      "currency": "টাকা"
+
+    }
+  },
+  "benefitsSection": {
+    "title": "বিশেষ সময়ে লজ্জা ও হতাশার সম্মুখীন হতে হচ্ছে?",
+    "images": {
+      "productImages": [
+        {
+          "src": "wp-content/uploads/2025/01/WhatsApp-Image-2025-01-12-at-10.10.02-PM-1000x1024.jpg",
+          "width": "1000",
+          "height": "1024",
+          "alt": "Product Image 1",
+          "srcset": "https://doctoronline.shop/wp-content/uploads/2025/01/WhatsApp-Image-2025-01-12-at-10.10.02-PM-1000x1024.jpeg 1000w, https://doctoronline.shop/wp-content/uploads/2025/01/WhatsApp-Image-2025-01-12-at-10.10.02-PM-293x300.jpeg 293w, https://doctoronline.shop/wp-content/uploads/2025/01/WhatsApp-Image-2025-01-12-at-10.10.02-PM-768x787.jpeg 768w, https://doctoronline.shop/wp-content/uploads/2025/01/WhatsApp-Image-2025-01-12-at-10.10.02-PM-600x614.jpeg 600w, https://doctoronline.shop/wp-content/uploads/2025/01/WhatsApp-Image-2025-01-12-at-10.10.02-PM.jpeg 1242w"
+        },
+        {
+          "src": "wp-content/uploads/2025/01/441657359_1019042556612570_9165622250806125390_n-1-1-1.jpg",
+          "width": "600",
+          "height": "562",
+          "alt": "Product Image 2",
+          "srcset": "https://doctoronline.shop/wp-content/uploads/2025/01/441657359_1019042556612570_9165622250806125390_n-1-1-1-300x281.jpg 300w, https://doctoronline.shop/wp-content/uploads/2025/01/441657359_1019042556612570_9165622250806125390_n-1-1-1.jpg 600w"
+        },
+        {
+          "src": "wp-content/uploads/2025/01/safron-2-1-1-1024x1024.jpg",
+          "width": "1024",
+          "height": "1024",
+          "alt": "Product Image 3",
+          "srcset": "https://doctoronline.shop/wp-content/uploads/2025/01/safron-2-1-1-1024x1024.jpg 1024w, https://doctoronline.shop/wp-content/uploads/2025/01/safron-2-1-1-300x300.jpg 300w, https://doctoronline.shop/wp-content/uploads/2025/01/safron-2-1-1-150x150.jpg 150w, https://doctoronline.shop/wp-content/uploads/2025/01/safron-2-1-1-768x768.jpg 768w, https://doctoronline.shop/wp-content/uploads/2025/01/safron-2-1-1-600x600.jpg 600w, https://doctoronline.shop/wp-content/uploads/2025/01/safron-2-1-1-100x100.jpg 100w, https://doctoronline.shop/wp-content/uploads/2025/01/safron-2-1-1.jpg 1200w"
+        }
+      ],
+      "bottomImage": {
+        "src": "wp-content/uploads/2025/01/IMG_20240815_000203-1-1.jpg",
+        "width": "1006",
+        "height": "450",
+        "alt": "Bottom Image",
+        "srcset": "https://doctoronline.shop/wp-content/uploads/2025/01/IMG_20240815_000203-1-1.jpg 1006w, https://doctoronline.shop/wp-content/uploads/2025/01/IMG_20240815_000203-1-1-300x134.jpg 300w, https://doctoronline.shop/wp-content/uploads/2025/01/IMG_20240815_000203-1-1-768x344.jpg 768w, https://doctoronline.shop/wp-content/uploads/2025/01/IMG_20240815_000203-1-1-600x268.jpg 600w"
+      }
+    }
+  },
+  "ingredientsSection": {
+    "title": "এতে রয়েছে মাল্টিভিটামিন এর ৪৯টি উপাদান আছে জিনসিং, আলকুশি, সাফেদ মুসলি, পানিফল, শিমুল মূল, শতমূল, তালমাখনা, মাশরুম, আখরোট, আফ্রিকান খুসিলা, কস্তুরী এর মতো মহামূল্যবান বহু উপাদান",
+    "backgroundColor": "classic",
+    "benefits": [
+      "এটি নিয়মিত খেলে আপনার সহবাসের সময় ২৫ - ৩০ মিনিট বৃদ্ধি পাবে।",
+      "প্রতি রাতে ২-৩ বার সহবাস করার ফিলিংস পাবেন।",
+      "লিঙ্গকে লম্বা ও মোটা করবে।",
+      "নষ্ট হওয়া কোষগুলো সতেজ করবে।"
+    ],
+    "ingredients": [
+      {
+        "name": "জাফরান",
+        "image": {
+          "src": "wp-content/uploads/2025/01/kesar-saffron-1-e1723963086554-150x150-1.jpg",
+          "width": 150,
+          "height": 150,
+          "srcset": "https://doctoronline.shop/wp-content/uploads/2025/01/kesar-saffron-1-e1723963086554-150x150-1.jpg 150w, https://doctoronline.shop/wp-content/uploads/2025/01/kesar-saffron-1-e1723963086554-150x150-1-100x100.jpg 100w",
+          "sizes": "(max-width: 150px) 100vw, 150px"
+        }
+      },
+      {
+        "name": "কোরিয়ান জিনসেং",
+        "image": {
+          "src": "wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-5.jpg",
+          "width": 150,
+          "height": 150,
+          "srcset": "https://doctoronline.shop/wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-5.jpg 150w, https://doctoronline.shop/wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-5-100x100.jpg 100w",
+          "sizes": "(max-width: 150px) 100vw, 150px"
+        }
+      },
+      {
+        "name": "তালমাখনা",
+        "image": {
+          "src": "wp-content/uploads/2025/01/Talmakhana-1-1-1-1.jpg",
+          "width": 150,
+          "height": 150,
+          "srcset": "https://doctoronline.shop/wp-content/uploads/2025/01/Talmakhana-1-1-1-1.jpg 150w, https://doctoronline.shop/wp-content/uploads/2025/01/Talmakhana-1-1-1-1-100x100.jpg 100w",
+          "sizes": "(max-width: 150px) 100vw, 150px"
+        }
+      },
+      {
+        "name": "কস্তূরী বা মৃগনাভি",
+        "image": {
+          "src": "wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-6.jpg",
+          "width": 150,
+          "height": 150,
+          "srcset": "https://doctoronline.shop/wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-6.jpg 150w, https://doctoronline.shop/wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-6-100x100.jpg 100w",
+          "sizes": "(max-width: 150px) 100vw, 150px"
+        }
+      },
+      {
+        "name": "২৯ টি মাল্টিভিটামিন",
+        "image": {
+          "src": "wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-7.jpg",
+          "width": 150,
+          "height": 150,
+          "srcset": "https://doctoronline.shop/wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-7.jpg 150w, https://doctoronline.shop/wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-7-100x100.jpg 100w",
+          "sizes": "(max-width: 150px) 100vw, 150px"
+        }
+      },
+      {
+        "name": "শিমুল মূল",
+        "image": {
+          "src": "wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-8.jpg",
+          "width": 225,
+          "height": 225,
+          "srcset": "https://doctoronline.shop/wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-8.jpg 225w, https://doctoronline.shop/wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-8-150x150.jpg 150w, https://doctoronline.shop/wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-8-100x100.jpg 100w",
+          "sizes": "(max-width: 225px) 100vw, 225px"
+        }
+      },
+      {
+        "name": "শতমূল",
+        "image": {
+          "src": "wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-9.jpg",
+          "width": 225,
+          "height": 225,
+          "srcset": "https://doctoronline.shop/wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-9.jpg 225w, https://doctoronline.shop/wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-9-150x150.jpg 150w, https://doctoronline.shop/wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-9-100x100.jpg 100w",
+          "sizes": "(max-width: 225px) 100vw, 225px"
+        }
+      },
+      {
+        "name": "সফেদ মূসলি",
+        "image": {
+          "src": "wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-10.jpg",
+          "width": 150,
+          "height": 150,
+          "srcset": "https://doctoronline.shop/wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-10.jpg 150w, https://doctoronline.shop/wp-content/uploads/2025/01/ezgif.com-webp-to-jpg-converter-10-100x100.jpg 100w",
+          "sizes": "(max-width: 150px) 100vw, 150px"
+        }
+      }
+    ]
+  },
+  "instructionsSection": {
+    "title": "খাওয়ার নিয়ম",
+    "description": "প্রতিরাতে খাওয়ার আধ ঘন্টা পরে ১ টি করে মোট ৪৫ দিন সেবন করতে হবে"
+  },
+  "testimonialSection": {
+    "title": "গ্রাহকদের অভিমত",
+    "testimonials": [
+      {
+        "image": "wp-content/uploads/2025/01/IMG-20241121-WA0026-1-1-1-1.jpg",
+        "alt": "Customer Review 1"
+      },
+      {
+        "image": "wp-content/uploads/2025/01/IMG-20241121-WA0027-1-1-1-1.jpg",
+        "alt": "Customer Review 2"
+      }
+
+    ]
+  },
+  "testimonialsSection": {
+    "title": "গ্রাহকদের অভিমত",
+    "carouselSettings": {
+      "slidesToShow": "5",
+      "navigation": "both",
+      "autoplay": "yes",
+      "pauseOnHover": "yes",
+      "pauseOnInteraction": "yes",
+      "autoplaySpeed": 5000,
+      "infinite": "yes",
+      "speed": 500
+    },
+    "testimonialImages": [
+      {
+        "src": "wp-content/uploads/2025/01/IMG-20241121-WA0026-1-1-1-1.jpg",
+        "alt": "IMG-20241121-WA0026-1-1-1.jpg"
+      },
+      {
+        "src": "wp-content/uploads/2025/01/IMG-20241121-WA0027-1-1-1-1.jpg",
+        "alt": "IMG-20241121-WA0027-1-1-1.jpg"
+      },
+      {
+        "src": "wp-content/uploads/2025/01/IMG-20241121-WA0028-1-1-1-1.jpg",
+        "alt": "IMG-20241121-WA0028-1-1-1.jpg"
+      },
+      {
+        "src": "wp-content/uploads/2025/01/IMG-20241121-WA0034-1-1-1-1.jpg",
+        "alt": "IMG-20241121-WA0034-1-1-1.jpg"
+      },
+      {
+        "src": "wp-content/uploads/2025/01/IMG-20241121-WA0037-1-1-1-1.jpg",
+        "alt": "IMG-20241121-WA0037-1-1-1.jpg"
+      },
+      {
+        "src": "wp-content/uploads/2025/01/IMG-20241121-WA0038-1-1-1-1.jpg",
+        "alt": "IMG-20241121-WA0038-1-1-1.jpg"
+      },
+      {
+        "src": "wp-content/uploads/2025/01/IMG-20241121-WA0039-1-1-1-1.jpg",
+        "alt": "IMG-20241121-WA0039-1-1-1.jpg"
+      },
+      {
+        "src": "wp-content/uploads/2025/01/IMG-20241121-WA0040-1-1-1-1.jpg",
+        "alt": "IMG-20241121-WA0040-1-1-1.jpg"
+      }
+    ]
+  },
+  "orderSection": {
+    "title": {
+      "prefix": "অর্ডার করতে নিচের",
+      "highlight": "ফর্মটি পূরণ",
+      "suffix": "করুন"
+    },
+    "product": {
+      "id": 66,
+      "name": "Saffron Time Dev",
+      "price": "1,490.00",
+      "currency": "৳",
+      "image": {
+        "src": "wp-content/uploads/2025/01/safron-2-1-768x768-1-300x300.jpg",
+        "width": 300,
+        "height": 300,
+        "alt": "",
+        "class": "attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
+      }
+    },
+    "form": {
+      "action": "https://doctoronline.shop/checkout/",
+      "fields": {
+        "name": {
+          "label": "আপনার নামঃ",
+          "required": true,
+          "type": "text",
+          "id": "billing_first_name"
+        },
+        "address": {
+          "label": "আপনার সম্পূর্ন ঠিকানাঃ",
+          "required": false,
+          "type": "text",
+          "id": "billing_address_1"
+        },
+        "phone": {
+          "label": "আপনার মোবাইল নাম্বারঃ",
+          "required": true,
+          "type": "tel",
+          "id": "billing_phone"
+        }
+      },
+      "order": {
+        "title": "Your order",
+        "headers": {
+          "product": "Product",
+          "subtotal": "Subtotal"
+        },
+        "payment": {
+          "method": "Cash on delivery",
+          "description": "Pay with cash upon delivery."
+        },
+        "privacy": {
+          "text": "Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our",
+          "link": {
+            "text": "Privacy policy",
+            "url": "index3b72.html?page_id=3"
+          }
+        },
+        "submit": {
+          "text": "অর্ডার করুন",
+          "value": "অর্ডার করুন ৳ 1,490.00"
+        }
+      }
+    }
+  },
+  "guaranteeSection": {
+    "title": "আমাদের প্রোডাক্ট সেবন করে কাজ হয়নি এমন কথা কেউ বলতে পারলে ৩ গুন টাকা রিটার্ন দিব। আমাদের প্রোডাক্ট টি BSTI অনুমোদিত, সম্পূর্ণ পার্শ্ব প্রতিক্রিয়া মুক্ত। ১০০% কাজ হবে ইনশাআল্লাহ। জীবনে শেষ চিকিৎসা ভেবে নিয়ে দেখেন, ১০০% কাজ হবে ইনশাআল্লাহ।",
+    "backgroundColor": "classic"
+  },
+  "solutionsSection": {
+    "title": "এটি সেবনে যে সকল সমাধান পাবেন",
+    "button": {
+      "text": "অর্ডার করতে ক্লিক করুন",
+      "href": "#order",
+      "icon": {
+        "viewBox": "0 0 512 512",
+        "path": "M428.8 137.6h-86.177a115.52 115.52 0 0 0 2.176-22.4c0-47.914-35.072-83.2-92-83.2-45.314 0-57.002 48.537-75.707 78.784-7.735 12.413-16.994 23.317-25.851 33.253l-.131.146-.129.148C135.662 161.807 127.764 168 120.8 168h-2.679c-5.747-4.952-13.536-8-22.12-8H32c-17.673 0-32 12.894-32 28.8v230.4C0 435.106 14.327 448 32 448h64c8.584 0 16.373-3.048 22.12-8h2.679c28.688 0 67.137 40 127.2 40h21.299c62.542 0 98.8-38.658 99.94-91.145 12.482-17.813 18.491-40.785 15.985-62.791A93.148 93.148 0 0 0 393.152 304H428.8c45.435 0 83.2-37.584 83.2-83.2 0-45.099-38.101-83.2-83.2-83.2zm0 118.4h-91.026c12.837 14.669 14.415 42.825-4.95 61.05 11.227 19.646 1.687 45.624-12.925 53.625 6.524 39.128-10.076 61.325-50.6 61.325H248c-45.491 0-77.21-35.913-120-39.676V215.571c25.239-2.964 42.966-21.222 59.075-39.596 11.275-12.65 21.725-25.3 30.799-39.875C232.355 112.712 244.006 80 252.8 80c23.375 0 44 8.8 44 35.2 0 35.2-26.4 53.075-26.4 70.4h158.4c18.425 0 35.2 16.5 35.2 35.2 0 18.975-16.225 35.2-35.2 35.2zM88 384c0 13.255-10.745 24-24 24s-24-10.745-24-24 10.745-24 24-24 24 10.745 24 24z"
+      }
+    }
+  },
+  "productSection": {
+    "title": "Saffron Time Dev",
+    "subtitle": "সাফরন টাইম ডেভ",
+    "backgroundColor": "classic",
+    "textAlign": "center",
+    "titleColor": "#000000",
+    "subtitleColor": "#000000"
+  },
+  "contactInfo": {
+    "phone": "01609505987"
+  }
+}
