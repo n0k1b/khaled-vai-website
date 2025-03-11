@@ -1,6 +1,9 @@
+
+
 <section
-                class="elementor-section elementor-top-section elementor-element elementor-element-be570b3 order elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+                class="elementor-section elementor-top-section elementor-element elementor-element-be570b3 order section-container elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                 data-id="be570b3" data-element_type="section" id="order">
+                <?php echo generate_edit_button('orderSection'); ?>
                 <div class="elementor-container elementor-column-gap-no">
                     <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-4bea656d"
                         data-id="4bea656d" data-element_type="column">
