@@ -300,6 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Get DOM elements
     const qtyInput = document.querySelector('.wcf-qty-selection');
     const displayQty = document.getElementById('wcf-display-quantity');
+    const checkoutForm = document.querySelector('form.checkout.woocommerce-checkout');
 
     // Convert Bengali numerals to English numerals
     function convertBengaliToEnglish(bengaliNumber) {
@@ -342,12 +343,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         // Update order button text
-        const orderBtn = document.getElementById('place_order');
+        const orderBtn = document.querySelector('button[type="submit"]');
         if (orderBtn) {
-            const buttonText = `অর্ডার করুন&nbsp;&nbsp;&#2547;&nbsp;${totalBengali}`;
-            orderBtn.value = buttonText;
-            orderBtn.setAttribute('data-value', buttonText);
-            orderBtn.innerHTML = buttonText;
+            orderBtn.value = 'অর্ডার করুন';
+            orderBtn.innerHTML = 'অর্ডার করুন';
         }
     }
 
@@ -398,7 +397,119 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Handle form submission
+    if (checkoutForm) {
+        checkoutForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validate form
+            const name = document.getElementById('billing_first_name').value.trim();
+            const phone = document.getElementById('billing_phone').value.trim();
+
+            if (!name) {
+                alert('অনুগ্রহ করে আপনার নাম লিখুন।');
+                return false;
+            }
+
+            if (!phone) {
+                alert('অনুগ্রহ করে আপনার মোবাইল নাম্বার লিখুন।');
+                return false;
+            }
+
+            // Basic phone validation for Bangladesh
+            const phoneRegex = /^01[3-9]\d{8}$/;
+            if (!phoneRegex.test(phone)) {
+                alert('অনুগ্রহ করে সঠিক মোবাইল নাম্বার লিখুন। (উদাহরণ: 01712345678)');
+                return false;
+            }
+
+            // Get form data
+            const formData = new FormData();
+
+            // Add customer information
+            formData.append('name', name);
+            formData.append('address', document.getElementById('billing_address_1').value.trim());
+            formData.append('phone', phone);
+
+            // Add order information
+            formData.append('product_name', productName);
+            formData.append('quantity', qtyInput.value);
+            formData.append('unit_price', basePrice);
+            formData.append('total_price', basePrice * parseInt(qtyInput.value));
+            formData.append('payment_method', 'cod');
+            formData.append('order_status', 'pending');
+
+            // Show loading state
+            const orderBtn = document.querySelector('button[type="submit"]');
+            const originalBtnText = orderBtn.innerHTML;
+            orderBtn.disabled = true;
+            orderBtn.innerHTML = '<span class="spinner"></span> অপেক্ষা করুন...';
+
+            // Send the order data to the server
+            fetch('process-order.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                // Reset button state
+                orderBtn.disabled = false;
+                orderBtn.innerHTML = originalBtnText;
+
+                if (data.success) {
+                    // Show success message
+                    alert('আপনার অর্ডার সফলভাবে গৃহীত হয়েছে। আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।');
+
+                    // Clear form fields
+                    document.getElementById('billing_first_name').value = '';
+                    document.getElementById('billing_address_1').value = '';
+                    document.getElementById('billing_phone').value = '';
+
+                    // Reset quantity to 1
+                    qtyInput.value = 1;
+                    updatePrices(1);
+                } else {
+                    // Show error message
+                    alert('দুঃখিত, অর্ডার প্রক্রিয়াকরণে একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।');
+                    console.error('Error:', data.message);
+                }
+            })
+            .catch(error => {
+                // Reset button state
+                orderBtn.disabled = false;
+                orderBtn.innerHTML = originalBtnText;
+
+                console.error('Error:', error);
+                alert('দুঃখিত, একটি ত্রুটি ঘটেছে। অনুগ্রহ করে আবার চেষ্টা করুন।');
+            });
+        });
+    }
+
     // Initial price update
     updatePrices(1);
+
+    // Add spinner style
+    const style = document.createElement('style');
+    style.textContent = `
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    `;
+    document.head.appendChild(style);
 });
 </script>

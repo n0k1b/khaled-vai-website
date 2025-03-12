@@ -43,7 +43,11 @@ function escape($value) {
 }
 
 function generate_edit_button($section, $type = 'text') {
-    return '<button class="edit-button" onclick="openEditModal(\'' . $section . '\', \'' . $type . '\')">Edit</button>';
+    // Only generate edit buttons for logged-in users
+    if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
+        return '<button class="edit-button" onclick="openEditModal(\'' . $section . '\', \'' . $type . '\')">Edit</button>';
+    }
+    return ''; // Return empty string for non-logged in users
 }
 
 ?>
@@ -52,7 +56,9 @@ function generate_edit_button($section, $type = 'text') {
 
         <div data-elementor-type="wp-post" data-elementor-id="23" class="elementor elementor-23"
             data-elementor-post-type="cartflows_step">
+            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
             <button class="edit-button" onclick="openEditModal('heroBackground', 'image')">Edit Background Image</button>
+            <?php endif; ?>
             <section
                 class="elementor-section elementor-top-section elementor-element elementor-element-7046c9b elementor-section-height-min-height elementor-section-boxed elementor-section-height-default elementor-section-items-middle"
                 data-id="7046c9b" data-element_type="section"
@@ -494,23 +500,9 @@ $checkIcon = [
                                         হলে সরাসরি যোগাযোগ করুন</h2>
                                 </div>
                             </div>
-                            <div class="elementor-element elementor-element-b6f2455 elementor-align-center elementor-widget elementor-widget-button"
-                                data-id="b6f2455" data-element_type="widget" data-widget_type="button.default">
-                                <div class="elementor-widget-container">
-                                    <div class="elementor-button-wrapper">
-                                        <a class="elementor-button elementor-button-link elementor-size-sm"
-                                            href="tel:<?php echo escape($contactInfo['phone']); ?>">
-                                            <span class="elementor-button-content-wrapper">
-                                                <span class="elementor-button-text" data-section="contactPhone">
-                                                    <?php echo escape($contactInfo['phone']); ?>
-                                                    <?php echo generate_edit_button('contactPhone', 'text'); ?>
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
+                                <?php echo generate_edit_button('orderSection'); ?>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

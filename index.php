@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en-US" class="no-js">
 
@@ -158,8 +161,8 @@
             "active_checkout_cookie": "wcf_active_checkout",
             "is_optin": false,
             "pinterest_consent_cookie": "cartflows_pinterest_consent",
-            "fb_add_payment_info_data": "{\"content_ids\":[\"66\"],\"content_type\":\"product\",\"plugin\":\"CartFlows-Checkout\",\"value\":\"1490.00\",\"content_name\":\"Saffron Time Dev\",\"content_category\":\"Uncategorized\",\"contents\":\"[{\\\"id\\\":66,\\\"name\\\":\\\"Saffron Time Dev\\\",\\\"price\\\":\\\"1490.00\\\",\\\"quantity\\\":\\\"1\\\"}]\",\"currency\":\"BDT\",\"user_roles\":\"\",\"num_items\":1,\"domain\":\"https:\\\/\\\/doctoronline.shop\",\"language\":\"en-US\",\"userAgent\":\"Mozilla\\\/4.5 (compatible; HTTrack 3.0x; Windows 98)\"}",
-            "add_payment_info_data": "{\"send_to\":\"\",\"event_category\":\"Enhanced-Ecommerce\",\"currency\":\"BDT\",\"coupon\":[],\"value\":\"1490.00\",\"items\":[{\"id\":66,\"name\":\"Saffron Time Dev\",\"sku\":\"\",\"category\":\"Uncategorized\",\"price\":\"1490.00\",\"quantity\":\"1\"}],\"non_interaction\":true}",
+            "fb_add_payment_info_data": "{\"content_ids\":[\"66\"],\"content_type\":\"product\",\"plugin\":\"CartFlows-Checkout\",\"value\":\"1490.00\",\"content_name\":\"Mom Touch\",\"content_category\":\"Uncategorized\",\"contents\":\"[{\\\"id\\\":66,\\\"name\\\":\\\"Mom Touch\\\",\\\"price\\\":\\\"1490.00\\\",\\\"quantity\\\":\\\"1\\\"}]\",\"currency\":\"BDT\",\"user_roles\":\"\",\"num_items\":1,\"domain\":\"https:\\\/\\\/doctoronline.shop\",\"language\":\"en-US\",\"userAgent\":\"Mozilla\\\/4.5 (compatible; HTTrack 3.0x; Windows 98)\"}",
+            "add_payment_info_data": "{\"send_to\":\"\",\"event_category\":\"Enhanced-Ecommerce\",\"currency\":\"BDT\",\"coupon\":[],\"value\":\"1490.00\",\"items\":[{\"id\":66,\"name\":\"Mom Touch\",\"sku\":\"\",\"category\":\"Uncategorized\",\"price\":\"1490.00\",\"quantity\":\"1\"}],\"non_interaction\":true}",
             "wcf_validate_coupon_nonce": "f94c89f5ca",
             "wcf_validate_remove_coupon_nonce": "b8a4218385",
             "wcf_validate_remove_cart_product_nonce": "6bab4f7ce5",
@@ -210,7 +213,7 @@
         console.log('PixelYourSite PRO version 9.10.5.1');
 
     </script>
-    <title>Saffron Time Dev</title>
+    <title>Mom Touch</title>
     <link href='wp-content/plugins/woocommerce/assets/client/blocks/cart-frontend7f68.js?ver=a428e7b790ea3d73903b'
         as='script' rel='prefetch' />
     <link
@@ -274,8 +277,8 @@
     <link href='wp-includes/js/dist/wordcount.min9ebf.js?ver=55d8c2bf3dc99e7ea5ec' as='script' rel='prefetch' />
     <link href='wp-content/plugins/woocommerce/assets/client/blocks/checkout-frontenda595.js?ver=420b72b53a44e7543ca2'
         as='script' rel='prefetch' />
-    <link rel="alternate" type="application/rss+xml" title="Saffron Time Dev &raquo; Feed" href="feed/index.html" />
-    <link rel="alternate" type="application/rss+xml" title="Saffron Time Dev &raquo; Comments Feed"
+    <link rel="alternate" type="application/rss+xml" title="Mom Touch &raquo; Feed" href="feed/index.html" />
+    <link rel="alternate" type="application/rss+xml" title="Mom Touch &raquo; Comments Feed"
         href="comments/feed/index.html" />
     <script>
         window._wpemojiSettings = {
@@ -1475,7 +1478,7 @@
                         "params": {
                             "content_type": "product",
                             "content_ids": ["66"],
-                            "content_name": "Saffron Time Dev",
+                            "content_name": "Mom Touch",
                             "category_name": "Uncategorized",
                             "num_items": 1,
                             "subtotal": 1490,

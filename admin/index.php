@@ -7,6 +7,6 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
     header('Location: ../admin/dashboard.php');
 } else {
     // Redirect to the login page if not logged in
-    header('Location: /admin/login.php');
+    header('Location: ../admin/login.php');
 }
 exit;

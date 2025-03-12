@@ -1,21 +1,29 @@
 <?php
 session_start();
+require '../connection.php';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
+try {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $username = $_POST['username'] ?? '';
+        $password = $_POST['password'] ?? '';
 
-    // Default credentials
-    $defaultUsername = 'admin';
-    $defaultPassword = 'password';
+        // Query the database for the user
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+        $stmt->execute([$username]);
+        $user = $stmt->fetch();
 
-    if ($username === $defaultUsername && $password === $defaultPassword) {
-        $_SESSION['logged_in'] = true;
-        header('Location: ../admin/dashboard.php');
-        exit;
-    } else {
-        $error = 'Invalid username or password';
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['logged_in'] = true;
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['user_role'] = $user['role'];
+            header('Location: ../admin/dashboard.php');
+            exit;
+        } else {
+            $error = 'Invalid username or password';
+        }
     }
+} catch (\PDOException $e) {
+    throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 ?>
 
