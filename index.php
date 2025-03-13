@@ -1444,21 +1444,7 @@ session_start();
     </script>
     <script src="wp-content/plugins/woocommerce/assets/js/frontend/address-i18n.minab9f.js?ver=9.6.1"
         id="wc-address-i18n-js" defer data-wp-strategy="defer"></script>
-    <script id="wc-checkout-js-extra">
-        var wc_checkout_params = {
-            "ajax_url": "\/wp-admin\/admin-ajax.php",
-            "wc_ajax_url": "\/?wc-ajax=%%endpoint%%&wcf_checkout_id=23",
-            "update_order_review_nonce": "293470a5fa",
-            "apply_coupon_nonce": "f5a255de86",
-            "remove_coupon_nonce": "b302239e80",
-            "option_guest_checkout": "yes",
-            "checkout_url": "\/?wc-ajax=checkout&wcf_checkout_id=23",
-            "is_checkout": "1",
-            "debug_mode": "",
-            "i18n_checkout_error": "There was an error processing your order. Please check for any charges in your payment method and review your <a href=\"https:\/\/doctoronline.shop\/my-account\/orders\/\">order history<\/a> before placing the order again."
-        };
 
-    </script>
     <script src="wp-content/plugins/woocommerce/assets/js/frontend/checkout.minab9f.js?ver=9.6.1" id="wc-checkout-js"
         defer data-wp-strategy="defer"></script>
     <script src="wp-content/plugins/pixelyoursite-pro/dist/scripts/js.cookie-2.1.3.min4c71.js?ver=2.1.3"

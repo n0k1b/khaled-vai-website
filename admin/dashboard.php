@@ -5,6 +5,17 @@ if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
     header('Location: /admin/login.php');
     exit;
 }
+
+// Fetch recent orders from the database
+require_once '../connection.php';
+
+$recentOrders = [];
+try {
+    $stmt = $pdo->query("SELECT order_number, customer_name, customer_address, customer_phone, total_price, order_status, created_at FROM orders ORDER BY created_at DESC LIMIT 5");
+    $recentOrders = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    error_log('Error fetching recent orders: ' . $e->getMessage());
+}
 ?>
 
 <!DOCTYPE html>
@@ -70,7 +81,7 @@ if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
                     </div>
                     <h3>Manage Orders</h3>
                     <p>View and manage all customer orders</p>
-                    <a href="/admin/orders.php" class="btn btn-primary"><i class="fas fa-eye me-2"></i>Show Orders</a>
+                    <a href="../admin/orders.php" class="btn btn-primary"><i class="fas fa-eye me-2"></i>Show Orders</a>
                 </div>
             </div>
 
@@ -88,6 +99,18 @@ if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
             <div class="col-md-4">
                 <div class="dashboard-card text-center">
                     <div class="card-icon">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3>Change Password</h3>
+                    <p>Update your admin account password</p>
+                    <a href="../admin/change-password.php" class="btn btn-secondary"><i class="fas fa-lock me-2"></i>Change Password</a>
+                </div>
+            </div>
+
+            <!--
+            <div class="col-md-4">
+                <div class="dashboard-card text-center">
+                    <div class="card-icon">
                         <i class="fas fa-cog"></i>
                     </div>
                     <h3>Settings</h3>
@@ -95,38 +118,39 @@ if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
                     <a href="/admin/settings.php" class="btn btn-secondary"><i class="fas fa-wrench me-2"></i>Manage Settings</a>
                 </div>
             </div>
+            -->
         </div>
 
         <div class="row mt-4">
-            <div class="col-md-6">
+            <div class="col-12">
                 <div class="dashboard-card">
-                    <h3><i class="fas fa-chart-line me-2"></i>Recent Activity</h3>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            New order received
-                            <span class="badge bg-primary rounded-pill">Just now</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Content updated
-                            <span class="badge bg-secondary rounded-pill">2 hours ago</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            New user registered
-                            <span class="badge bg-info rounded-pill">Yesterday</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="col-md-6">
-                <div class="dashboard-card">
-                    <h3><i class="fas fa-bullhorn me-2"></i>Announcements</h3>
-                    <div class="alert alert-info">
-                        <strong>New Feature:</strong> You can now export orders to CSV format.
-                    </div>
-                    <div class="alert alert-warning">
-                        <strong>Reminder:</strong> Update your password regularly for security.
-                    </div>
+                    <h3><i class="fas fa-receipt me-2"></i>Recent Orders</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Order Number</th>
+                                <th>Customer Name</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                                <th>Total Price</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($recentOrders as $order): ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($order['order_number']); ?></td>
+                                    <td><?php echo htmlspecialchars($order['customer_name']); ?></td>
+                                    <td><?php echo htmlspecialchars($order['customer_address']); ?></td>
+                                    <td><?php echo htmlspecialchars($order['customer_phone']); ?></td>
+                                    <td><?php echo htmlspecialchars($order['total_price']); ?> BDT</td>
+                                    <td><?php echo htmlspecialchars($order['order_status']); ?></td>
+                                    <td><?php echo htmlspecialchars($order['created_at']); ?></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

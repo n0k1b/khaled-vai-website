@@ -99,8 +99,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pageContent['instructionsSection']['description'] = $content;
         file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         echo 'Content updated successfully!';
+    } elseif ($section === 'contactInfo' && isset($pageContent['contactInfo'])) {
+        $pageContent['contactInfo']['value'] = $content;
+        file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        echo 'Content updated successfully!';
     } elseif ($section === 'contactPhone' && isset($pageContent['contactInfo'])) {
         $pageContent['contactInfo']['phone'] = $content;
+        file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        echo 'Content updated successfully!';
+    } elseif ($section === 'productTitle' && isset($pageContent['productSection'])) {
+        $pageContent['productSection']['title'] = $content;
         file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         echo 'Content updated successfully!';
     } else {

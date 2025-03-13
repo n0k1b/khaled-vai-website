@@ -1,10 +1,13 @@
 <?php
 declare(strict_types=1);
+require_once __DIR__ . '/vendor/autoload.php';
 
-$host = getenv('DB_HOST') ?: 'localhost';
-$db = getenv('DB_DATABASE') ?: 'khaled-vai-crm';
-$user = getenv('DB_USERNAME') ?: 'root';
-$pass = getenv('DB_PASSWORD') ?: '';
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+$host = $_SERVER['DB_HOST'];
+$db = $_SERVER['DB_DATABASE'] ;
+$user = $_SERVER['DB_USERNAME'];
+$pass = $_SERVER['DB_PASSWORD'];
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

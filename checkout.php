@@ -41,9 +41,7 @@
                                                 <div class="woocommerce-notices-wrapper"></div>
                                                 <div class="woocommerce-notices-wrapper"></div>
                                                 <form name="checkout" method="post"
-                                                    class="checkout woocommerce-checkout"
-                                                    action="https://doctoronline.shop/checkout/"
-                                                    enctype="multipart/form-data">
+                                                    class="checkout woocommerce-checkout">
 
 
 
@@ -56,20 +54,28 @@
                                                                 data-options="{&quot;product_id&quot;:66,&quot;variation_id&quot;:0,&quot;type&quot;:&quot;simple&quot;,&quot;unique_id&quot;:&quot;t97b9sxu&quot;,&quot;mode&quot;:&quot;quantity&quot;,&quot;highlight_text&quot;:&quot;&quot;,&quot;quantity&quot;:&quot;1&quot;,&quot;default_quantity&quot;:1,&quot;original_price&quot;:&quot;1490&quot;,&quot;discounted_price&quot;:&quot;&quot;,&quot;total_discounted_price&quot;:&quot;&quot;,&quot;currency&quot;:&quot;&amp;#2547;&amp;nbsp;&quot;,&quot;cart_item_key&quot;:&quot;1557f7c07fb1fa69e3da7f89d1656a53&quot;,&quot;save_value&quot;:&quot;&quot;,&quot;save_percent&quot;:&quot;&quot;,&quot;sign_up_fee&quot;:0,&quot;subscription_price&quot;:&quot;1490&quot;,&quot;trial_period_string&quot;:&quot;&quot;}">
 
                                                                 <div class="wcf-item">
+                                                                <?php echo generate_edit_button('productSection', 'image'); ?>
+                                                                    <div class="wcf-item-image" style="position: relative;">
 
-                                                                    <div class="wcf-item-image" style=""><img
-                                                                            loading="lazy" decoding="async" width="300"
+                                                                        <img loading="lazy" decoding="async" width="300"
                                                                             height="300"
-                                                                            src="wp-content/uploads/2025/01/safron-2-1-768x768-1-300x300.jpg"
+                                                                            src="<?php echo $productSection['image'] ? $productSection['image'] : ''; ?>"
                                                                             class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"
-                                                                            alt="" /></div>
+                                                                            alt="" />
+                                                                    </div>
                                                                     <div class="wcf-item-content-options">
                                                                         <div class="wcf-item-wrap">
-                                                                            <span class="wcf-display-title"><?php echo $productSection['title'] ?></span><span
+                                                                            <span class="wcf-display-title" data-section="productTitle">
+                                                                                <?php echo $productSection['title'] ?>
+
+                                                                            </span>
+                                                                            <span
                                                                                 class="wcf-display-title-quantity"><span
                                                                                     class="dashicons dashicons-no-alt"></span><span
                                                                                     class="wcf-display-quantity" id="wcf-display-quantity">1</span></span>
-                                                                        </div>
+                                                                                    <?php echo generate_edit_button('productTitle', 'text'); ?>
+                                                                                </div>
+
 
                                                                         <div class="wcf-qty  ">
                                                                             <div class="wcf-qty-selection-wrap">
@@ -112,37 +118,37 @@
 
                                                                 <div class="woocommerce-billing-fields__field-wrapper">
                                                                     <p class="form-row form-row-first wcf-column-100 validate-required"
-                                                                        id="billing_first_name_field"
+                                                                        id="customer_name_field"
                                                                         data-priority="10"><label
-                                                                            for="billing_first_name" class="">আপনার
+                                                                            for="customer_name" class="">আপনার
                                                                             নামঃ&nbsp;<abbr class="required"
                                                                                 title="required">*</abbr></label><span
                                                                             class="woocommerce-input-wrapper"><input
                                                                                 type="text" class="input-text "
-                                                                                name="billing_first_name"
-                                                                                id="billing_first_name" placeholder=""
+                                                                                name=""
+                                                                                id="customer_name" placeholder=""
                                                                                 value="" aria-required="true"
                                                                                 autocomplete="given-name" /></span></p>
                                                                     <p class="form-row form-row-wide address-field wcf-column-100"
-                                                                        id="billing_address_1_field" data-priority="50">
-                                                                        <label for="billing_address_1" class="">আপনার
+                                                                        id="customer_address_field" data-priority="50">
+                                                                        <label for="customer_address" class="">আপনার
                                                                             সম্পূর্ন ঠিকানাঃ&nbsp;<span
                                                                                 class="optional">(optional)</span></label><span
                                                                             class="woocommerce-input-wrapper"><input
                                                                                 type="text" class="input-text "
-                                                                                name="billing_address_1"
-                                                                                id="billing_address_1" placeholder=""
+                                                                                name=""
+                                                                                id="customer_address" placeholder=""
                                                                                 value=""
                                                                                 autocomplete="address-line1" /></span>
                                                                     </p>
                                                                     <p class="form-row form-row-wide wcf-column-100 validate-required validate-phone"
-                                                                        id="billing_phone_field" data-priority="100">
-                                                                        <label for="billing_phone" class="">আপনার মোবাইল
+                                                                        id="customer_phone_field" data-priority="100">
+                                                                        <label for="customer_phone" class="">আপনার মোবাইল
                                                                             নাম্বারঃ&nbsp;<abbr class="required"
                                                                                 title="required">*</abbr></label><span
                                                                             class="woocommerce-input-wrapper"><input
                                                                                 type="tel" class="input-text "
-                                                                                name="billing_phone" id="billing_phone"
+                                                                                name="" id="customer_phone"
                                                                                 placeholder="" value=""
                                                                                 aria-required="true"
                                                                                 autocomplete="tel" /></span></p>
@@ -188,9 +194,10 @@
                                                                 </thead>
                                                                 <tbody>
                                                                     <tr class="cart_item">
-                                                                        <td class="product-name">
-                                                                            <?php echo $productSection['title'] ?> <strong
-                                                                                class="product-quantity">&times;&nbsp;1</strong>
+                                                                        <td class="product-name" data-section="productTitle">
+                                                                            <?php echo $productSection['title'] ?>
+
+                                                                            <strong class="product-quantity">&times;&nbsp;1</strong>
                                                                         </td>
                                                                         <td class="product-total">
                                                                             <span
@@ -244,7 +251,7 @@
                                                                         <em>Update Totals</em> button before placing
                                                                         your order. You may be charged more than the
                                                                         amount stated above if you fail to do so.
-                                                                        <br /><button type="submit" class="button alt"
+                                                                        <br /><button type="button" class="button alt"
                                                                             name="woocommerce_checkout_update_totals"
                                                                             value="Update totals">Update totals</button>
                                                                     </noscript>
@@ -403,8 +410,8 @@ document.addEventListener('DOMContentLoaded', function() {
             e.preventDefault();
 
             // Validate form
-            const name = document.getElementById('billing_first_name').value.trim();
-            const phone = document.getElementById('billing_phone').value.trim();
+            const name = document.getElementById('customer_name').value.trim();
+            const phone = document.getElementById('customer_phone').value.trim();
 
             if (!name) {
                 alert('অনুগ্রহ করে আপনার নাম লিখুন।');
@@ -428,7 +435,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Add customer information
             formData.append('name', name);
-            formData.append('address', document.getElementById('billing_address_1').value.trim());
+            formData.append('address', document.getElementById('customer_address').value.trim());
             formData.append('phone', phone);
 
             // Add order information
@@ -466,13 +473,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     alert('আপনার অর্ডার সফলভাবে গৃহীত হয়েছে। আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।');
 
                     // Clear form fields
-                    document.getElementById('billing_first_name').value = '';
-                    document.getElementById('billing_address_1').value = '';
-                    document.getElementById('billing_phone').value = '';
+                    document.getElementById('customer_name').value = '';
+                    document.getElementById('customer_address').value = '';
+                    document.getElementById('customer_phone').value = '';
 
                     // Reset quantity to 1
                     qtyInput.value = 1;
                     updatePrices(1);
+
+                    // Option 1: Redirect to a thank you page
+                    // window.location.href = 'thank-you.php?order=' + data.order_number;
+
+                    // Option 2: Reload the page to clear all form data
+                    window.location.reload();
+
+                    // Option 3: If you don't want to reload, ensure the form is properly reset
+                    // checkoutForm.reset();
                 } else {
                     // Show error message
                     alert('দুঃখিত, অর্ডার প্রক্রিয়াকরণে একটি সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।');
@@ -513,3 +529,23 @@ document.addEventListener('DOMContentLoaded', function() {
     document.head.appendChild(style);
 });
 </script>
+
+<style>
+    .wcf-item-image {
+        position: relative;
+    }
+
+    .wcf-item-image .edit-button {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+        z-index: 10;
+    }
+
+    .wcf-display-title .edit-button,
+    .product-name .edit-button {
+        margin-left: 5px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+</style>

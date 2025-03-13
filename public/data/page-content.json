@@ -47,7 +47,7 @@
                     "srcset": "https:\/\/doctoronline.shop\/wp-content\/uploads\/2025\/01\/441657359_1019042556612570_9165622250806125390_n-1-1-1-300x281.jpg 300w, https:\/\/doctoronline.shop\/wp-content\/uploads\/2025\/01\/441657359_1019042556612570_9165622250806125390_n-1-1-1.jpg 600w"
                 },
                 {
-                    "src": "wp-content\/uploads\/2025\/01\/safron-2-1-1-1024x1024.jpg",
+                    "src": "wp-content\/uploads\/2025\/01\/67d2b885d3c67_safron-2-1-1-1024x1024.jpg",
                     "width": "1024",
                     "height": "1024",
                     "alt": "Product Image 3",
@@ -300,15 +300,17 @@
         }
     },
     "productSection": {
-        "title": "Saffron Time Dev",
+        "title": "Moms touch2",
         "subtitle": "সাফরন টাইম ডেভ",
         "backgroundColor": "classic",
         "textAlign": "center",
         "titleColor": "#000000",
-        "subtitleColor": "#000000"
+        "subtitleColor": "#000000",
+        "image": "wp-content\/uploads\/2025\/01\/67d2b8590cfb0_ezgif.com-webp-to-jpg-converter-10.jpg"
     },
     "contactInfo": {
-        "phone": "মোবাইল নাম্বার"
+        "phone": "মোবাইল নাম্বার",
+        "value": "017171717172"
     },
     "": []
 }

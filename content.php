@@ -485,6 +485,10 @@ $checkIcon = [
                 </div>
             </section>
 <?php include 'checkout.php'; ?>
+
+<section>
+    <img src="public/payment-banner.jpg" alt="Payment Banner">
+</section>
             <section
                 class="elementor-section elementor-top-section elementor-element elementor-element-2f1a973 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
                 data-id="2f1a973" data-element_type="section"
@@ -498,11 +502,15 @@ $checkIcon = [
                                 <div class="elementor-widget-container">
                                     <h2 class="elementor-heading-title elementor-size-default">অর্ডার করতে কোন সমস্যা
                                         হলে সরাসরি যোগাযোগ করুন</h2>
+
+
                                 </div>
+                                <h2 class="elementor-heading-title elementor-size-default" data-section="contactInfo"><?php echo $contactInfo['value'] ?></h2>
+                                <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
+                                    <?php echo generate_edit_button('contactInfo'); ?>
+                                <?php endif; ?>
                             </div>
-                            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
-                                <?php echo generate_edit_button('orderSection'); ?>
-                            <?php endif; ?>
+
                         </div>
                     </div>
                 </div>
@@ -589,13 +597,26 @@ function openEditModal(section, type) {
         document.getElementById('editModal').style.display = 'block';
         const element = document.querySelector(`[data-section="${section}"]`);
         if (element) {
+            // Get the text content, excluding any child elements (like the edit button)
             const textContent = Array.from(element.childNodes)
                 .filter(node => node.nodeType === Node.TEXT_NODE)
                 .map(node => node.textContent.trim())
                 .join(' ');
-            document.getElementById('editContent').value = textContent;
+
+            // If no text content is found directly, try to get it from the first child element
+            let finalContent = textContent;
+            if (!finalContent && element.firstChild && element.firstChild.nodeType !== Node.TEXT_NODE) {
+                finalContent = element.firstChild.textContent.trim();
+            }
+
+            document.getElementById('editContent').value = finalContent || '';
         } else {
-            console.error('Element not found for section:', section);
+            // Special case for productTitle which might be in a different structure
+            if (section === 'productTitle' && window.pageContent && window.pageContent.productSection) {
+                document.getElementById('editContent').value = window.pageContent.productSection.title || '';
+            } else {
+                console.error('Element not found for section:', section);
+            }
         }
     } else if (type === 'image') {
         document.getElementById('imageModal').style.display = 'block';
@@ -622,13 +643,27 @@ function saveContent() {
         alert(data);
         const element = document.querySelector(`[data-section="${currentSection}"]`);
         if (element) {
-            // Update only the text node, preserving the "Edit" button
+            // Find the text node to update
             const textNode = Array.from(element.childNodes).find(node => node.nodeType === Node.TEXT_NODE);
             if (textNode) {
                 textNode.textContent = content;
+            } else {
+                // If no text node exists, create one
+                const newTextNode = document.createTextNode(content);
+                element.insertBefore(newTextNode, element.firstChild);
+            }
+
+            // Special case for productTitle which might need additional updates
+            if (currentSection === 'productTitle' && window.pageContent) {
+                window.pageContent.productSection.title = content;
             }
         }
         closeModal();
+
+        // Reload the page to ensure all content is updated
+        // setTimeout(() => {
+        //     location.reload();
+        // }, 1000);
     })
     .catch(error => console.error('Error:', error));
 }
