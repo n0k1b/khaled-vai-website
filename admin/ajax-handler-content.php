@@ -111,6 +111,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pageContent['productSection']['title'] = $content;
         file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         echo 'Content updated successfully!';
+    } elseif ($section === 'videoTitle' && isset($pageContent['videoSection'])) {
+        $pageContent['videoSection']['title'] = $content;
+        file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        echo 'Video title updated successfully!';
     } else {
         echo 'Failed to update content: Section not found or not supported.';
     }

@@ -172,6 +172,10 @@
             }
         ]
     },
+    "videoSection": {
+        "title": "Demo Video Title",
+        "src": "wp-content\/uploads\/2025\/01\/67d68f66ecc15_sample-video.mp4"
+    },
     "testimonialsSection": {
         "title": "গ্রাহকদের অভিমত",
         "carouselSettings": {

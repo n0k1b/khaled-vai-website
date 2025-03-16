@@ -26,18 +26,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
     // Check if the file was uploaded without errors
     if (is_uploaded_file($_FILES['image']['tmp_name'])) {
         if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+            // Add this validation check after the move_uploaded_file() check
+            $allowedTypes = ['video/mp4', 'video/quicktime']; // Add more if needed
+            $finfo = finfo_open(FILEINFO_MIME_TYPE);
+            $mime = finfo_file($finfo, $targetFile);
+            finfo_close($finfo);
+
+            if (!in_array($mime, $allowedTypes)) {
+                unlink($targetFile); // Remove invalid file
+                echo 'Error: Only MP4/MOV videos allowed';
+                exit;
+            }
+
             // Handle different sections
             if ($section === 'heroBackground' && isset($pageContent['heroSection'])) {
                 $pageContent['heroSection']['backgroundImage'] = $relativePath;
                 file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
                 echo 'Hero background image updated successfully!';
-            }
-            elseif ($section === 'productSection' && isset($pageContent['productSection'])) {
+            } elseif ($section === 'productSection' && isset($pageContent['productSection'])) {
                 $pageContent['productSection']['image'] = $relativePath;
                 file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
                 echo 'Product image updated successfully!';
-            }
-            elseif (strpos($section, 'productImage') === 0 && isset($pageContent['benefitsSection']['images']['productImages'])) {
+            } elseif (strpos($section, 'productImage') === 0 && isset($pageContent['benefitsSection']['images']['productImages'])) {
                 $index = intval(substr($section, strlen('productImage')));
                 if (isset($pageContent['benefitsSection']['images']['productImages'][$index])) {
                     $pageContent['benefitsSection']['images']['productImages'][$index]['src'] = $relativePath;
@@ -46,13 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
                 } else {
                     echo 'Failed to update image: Invalid index.';
                 }
-            }
-            elseif ($section === 'bottomImage' && isset($pageContent['benefitsSection']['images'])) {
+            } elseif ($section === 'bottomImage' && isset($pageContent['benefitsSection']['images'])) {
                 $pageContent['benefitsSection']['images']['bottomImage']['src'] = $relativePath;
                 file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
                 echo 'Bottom image updated successfully!';
-            }
-            elseif (strpos($section, 'testimonialImage') === 0 && isset($pageContent['testimonialsSection']['testimonialImages'])) {
+            } elseif (strpos($section, 'testimonialImage') === 0 && isset($pageContent['testimonialsSection']['testimonialImages'])) {
                 $index = intval(substr($section, strlen('testimonialImage')));
                 if (isset($pageContent['testimonialsSection']['testimonialImages'][$index])) {
                     $pageContent['testimonialsSection']['testimonialImages'][$index]['src'] = $relativePath;
@@ -61,8 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
                 } else {
                     echo 'Failed to update image: Invalid index.';
                 }
-            }
-            elseif (strpos($section, 'ingredientImage') === 0 && isset($pageContent['ingredientsSection']['ingredients'])) {
+            } elseif (strpos($section, 'ingredientImage') === 0 && isset($pageContent['ingredientsSection']['ingredients'])) {
                 $imageIndex = intval(substr($section, strlen('ingredientImage')));
                 if (isset($pageContent['ingredientsSection']['ingredients'][$imageIndex]['image'])) {
                     $pageContent['ingredientsSection']['ingredients'][$imageIndex]['image']['src'] = $relativePath;
@@ -71,13 +78,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
                 } else {
                     echo 'Failed to update image: Invalid index.';
                 }
-            }
-            elseif ($section === 'productImage' && isset($pageContent['orderSection']['product']['image'])) {
+            } elseif ($section === 'productImage' && isset($pageContent['orderSection']['product']['image'])) {
                 $pageContent['orderSection']['product']['image']['src'] = $relativePath;
                 file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
                 echo 'Product image updated successfully!';
-            }
-            elseif (strpos($section, 'guaranteeImage') === 0 && isset($pageContent['guaranteeSection']['images'])) {
+            } elseif (strpos($section, 'guaranteeImage') === 0 && isset($pageContent['guaranteeSection']['images'])) {
                 $imageIndex = intval(substr($section, strlen('guaranteeImage')));
                 if (isset($pageContent['guaranteeSection']['images'][$imageIndex])) {
                     $pageContent['guaranteeSection']['images'][$imageIndex]['src'] = $relativePath;
@@ -86,8 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
                 } else {
                     echo 'Failed to update image: Invalid index.';
                 }
-            }
-            elseif (strpos($section, 'solutionImage') === 0 && isset($pageContent['solutionsSection']['images'])) {
+            } elseif (strpos($section, 'solutionImage') === 0 && isset($pageContent['solutionsSection']['images'])) {
                 $imageIndex = intval(substr($section, strlen('solutionImage')));
                 if (isset($pageContent['solutionsSection']['images'][$imageIndex])) {
                     $pageContent['solutionsSection']['images'][$imageIndex]['src'] = $relativePath;
@@ -96,13 +100,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
                 } else {
                     echo 'Failed to update image: Invalid index.';
                 }
-            }
-            elseif ($section === 'productLogo' && isset($pageContent['productSection']['logo'])) {
+            } elseif ($section === 'productLogo' && isset($pageContent['productSection']['logo'])) {
                 $pageContent['productSection']['logo']['src'] = $relativePath;
                 file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
                 echo 'Product logo updated successfully!';
-            }
-            elseif (strpos($section, 'benefitImage') === 0 && isset($pageContent['benefitsSection']['benefits'])) {
+            } elseif (strpos($section, 'benefitImage') === 0 && isset($pageContent['benefitsSection']['benefits'])) {
                 $imageIndex = intval(substr($section, strlen('benefitImage')));
                 if (isset($pageContent['benefitsSection']['benefits'][$imageIndex]['image'])) {
                     $pageContent['benefitsSection']['benefits'][$imageIndex]['image']['src'] = $relativePath;
@@ -111,8 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
                 } else {
                     echo 'Failed to update image: Invalid index.';
                 }
-            }
-            elseif (strpos($section, 'instructionImage') === 0 && isset($pageContent['instructionsSection']['images'])) {
+            } elseif (strpos($section, 'instructionImage') === 0 && isset($pageContent['instructionsSection']['images'])) {
                 $imageIndex = intval(substr($section, strlen('instructionImage')));
                 if (isset($pageContent['instructionsSection']['images'][$imageIndex])) {
                     $pageContent['instructionsSection']['images'][$imageIndex]['src'] = $relativePath;
@@ -121,8 +122,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
                 } else {
                     echo 'Failed to update image: Invalid index.';
                 }
-            }
-            else {
+            } elseif ($section === 'videoSource' && isset($pageContent['videoSection'])) {
+                $pageContent['videoSection']['src'] = $relativePath;
+                file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+                echo 'Video source updated successfully!';
+            } else {
                 echo 'Failed to update JSON content: Section not found or not supported.';
             }
         } else {
