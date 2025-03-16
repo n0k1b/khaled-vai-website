@@ -517,8 +517,8 @@ function generate_edit_button($section, $type = 'text')
         </section>
         <?php include 'checkout.php'; ?>
 
-        <section>
-            <img src="public/payment-banner.jpg" alt="Payment Banner">
+        <section style="text-align: center;">
+            <img src="public/payment-banner.png" alt="Payment Banner">
         </section>
         <section
             class="elementor-section elementor-top-section elementor-element elementor-element-2f1a973 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
@@ -873,7 +873,7 @@ function generate_edit_button($section, $type = 'text')
             .then(data => {
                 alert(data);
                 if (data.includes('success')) {
-                    // Refresh the video element    
+                    // Refresh the video element
                     const videoElement = document.querySelector('video source[data-section="' + currentSection + '"]');
                     if (videoElement) {
                         // Force video reload by updating timestamp

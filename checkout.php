@@ -244,6 +244,7 @@
                                                             </div>
                                                         </li>
                                                     </ul>
+                                                    <img src="public/regular-delivery.jpg" alt="Payment Banner">
                                                     <div class="form-row place-order">
                                                         <noscript>
                                                             Since your browser does not support JavaScript,
