@@ -26,18 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
     // Check if the file was uploaded without errors
     if (is_uploaded_file($_FILES['image']['tmp_name'])) {
         if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
-            // Add this validation check after the move_uploaded_file() check
-            $allowedTypes = ['video/mp4', 'video/quicktime']; // Add more if needed
-            $finfo = finfo_open(FILEINFO_MIME_TYPE);
-            $mime = finfo_file($finfo, $targetFile);
-            finfo_close($finfo);
-
-            if (!in_array($mime, $allowedTypes)) {
-                unlink($targetFile); // Remove invalid file
-                echo 'Error: Only MP4/MOV videos allowed';
-                exit;
-            }
-
             // Handle different sections
             if ($section === 'heroBackground' && isset($pageContent['heroSection'])) {
                 $pageContent['heroSection']['backgroundImage'] = $relativePath;
@@ -122,10 +110,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
                 } else {
                     echo 'Failed to update image: Invalid index.';
                 }
-            } elseif ($section === 'videoSource' && isset($pageContent['videoSection'])) {
-                $pageContent['videoSection']['src'] = $relativePath;
-                file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-                echo 'Video source updated successfully!';
             } else {
                 echo 'Failed to update JSON content: Section not found or not supported.';
             }

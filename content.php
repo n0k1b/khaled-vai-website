@@ -1,6 +1,4 @@
 <?php
-
-
 // Load and decode the JSON file
 $jsonPath = __DIR__ . '/public/data/page-content.json';
 $pageContent = json_decode(file_get_contents($jsonPath), true);
@@ -37,6 +35,7 @@ $productSection = $pageContent['productSection'] ?? [];
 // Access the contact info
 $contactInfo = $pageContent['contactInfo'] ?? [];
 $videoSection = $pageContent['videoSection'] ?? [];
+$socialMedia = $pageContent['socialMedia'] ?? [];
 
 // Helper function to replace Laravel's e() helper
 function escape($value)
@@ -44,15 +43,13 @@ function escape($value)
     return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
 }
 
-function generate_edit_button($section, $type = 'text', $label = 'Edit')
+function generate_edit_button($section, $type = 'text')
 {
-    return sprintf(
-        '<button class="edit-button" data-section="%s" data-type="%s" data-label="%s">%s</button>',
-        htmlspecialchars($section),
-        htmlspecialchars($type),
-        htmlspecialchars($label),
-        htmlspecialchars($label)
-    );
+    // Only generate edit buttons for logged-in users
+    if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']) {
+        return '<button class="edit-button" onclick="openEditModal(\'' . $section . '\', \'' . $type . '\')">Edit</button>';
+    }
+    return ''; // Return empty string for non-logged in users
 }
 
 ?>
@@ -61,7 +58,7 @@ function generate_edit_button($section, $type = 'text', $label = 'Edit')
 
     <div data-elementor-type="wp-post" data-elementor-id="23" class="elementor elementor-23"
         data-elementor-post-type="cartflows_step">
-        <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == true): ?>
+        <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
             <button class="edit-button" onclick="openEditModal('heroBackground', 'image')">Edit Background Image</button>
         <?php endif; ?>
         <section
@@ -306,7 +303,6 @@ function generate_edit_button($section, $type = 'text', $label = 'Edit')
                 </div>
             </div>
         </section>
-
         <section
             class="elementor-section elementor-top-section elementor-element elementor-element-2d2519c elementor-section-boxed elementor-section-height-default elementor-section-height-default"
             data-id="2d2519c" data-element_type="section">
@@ -550,6 +546,91 @@ function generate_edit_button($section, $type = 'text', $label = 'Edit')
                 </div>
             </div>
         </section>
+        <section class="py-8 w-full flex flex-col items-center justify-center" style="text-align: center; margin-top: 20px;">
+
+            <div class="flex items-center justify-center gap-4">
+                <!-- Facebook Link -->
+                <a href="<?php echo escape($socialMedia['facebook']['url'] ?? '#'); ?>"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="padding: 10px;"
+                    class="transition-transform duration-300 hover:scale-110">
+                    <img src="<?php echo escape($socialMedia['facebook']['icon'] ?? 'https://cdn1.iconfinder.com/data/icons/logotypes/32/facebook-256.png'); ?>"
+                        alt="Facebook"
+                        class="social-icon"
+                        loading="lazy">
+
+                </a>
+                <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
+                    <?php echo generate_edit_button('Facebook', 'text'); ?>
+                <?php endif; ?>
+
+                <!-- Instagram Link -->
+                <a href="<?php echo escape($socialMedia['instagram']['url'] ?? '#'); ?>"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="padding: 10px;"
+                    class="transition-transform duration-300 hover:scale-110">
+                    <img src="<?php echo escape($socialMedia['instagram']['icon'] ?? 'https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Instagram-256.png'); ?>"
+                        alt="Instagram"
+                        class="social-icon"
+                        loading="lazy">
+
+                </a>
+                <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
+                    <?php echo generate_edit_button('Instagram', 'text'); ?>
+                <?php endif; ?>
+
+                <!-- TikTok Link -->
+                <a href="<?php echo escape($socialMedia['tiktok']['url'] ?? '#'); ?>"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="padding: 10px;"
+                    class="transition-transform duration-300 hover:scale-110">
+                    <img src="<?php echo escape($socialMedia['tiktok']['icon'] ?? 'https://cdn0.iconfinder.com/data/icons/logos-brands-7/512/TikTok_logo_app0-256.png'); ?>"
+                        alt="TikTok"
+                        class="social-icon"
+                        loading="lazy">
+
+                </a>
+                <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
+                    <?php echo generate_edit_button('Tiktok', 'text'); ?>
+                <?php endif; ?>
+
+                <!-- YouTube Link -->
+                <a href="<?php echo escape($socialMedia['youtube']['url'] ?? '#'); ?>"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="padding: 10px;"
+                    class="transition-transform duration-300 hover:scale-110">
+                    <img src="<?php echo escape($socialMedia['youtube']['icon'] ?? 'https://cdn4.iconfinder.com/data/icons/social-media-flat-7/64/Social-media_Youtube-256.png'); ?>"
+                        alt="YouTube"
+                        class="social-icon"
+                        loading="lazy">
+
+                </a>
+                <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
+                    <?php echo generate_edit_button('Youtube', 'text'); ?>
+                <?php endif; ?>
+
+                <!-- IMO Link -->
+                <a href="<?php echo escape($socialMedia['imo']['url'] ?? '#'); ?>"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style="padding: 10px;"
+                    class="transition-transform duration-300 hover:scale-110">
+                    <img src="<?php echo escape($socialMedia['imo']['icon'] ?? 'https://cdn3.iconfinder.com/data/icons/social-media-2169/24/social_media_social_media_logo_imo-256.png'); ?>"
+                        alt="IMO"
+                        class="social-icon"
+                        loading="lazy">
+
+                </a>
+                <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
+                    <?php echo generate_edit_button('Imo', 'text'); ?>
+                <?php endif; ?>
+            </div>
+
+        </section>
     </div>
 </div>
 
@@ -567,8 +648,34 @@ function generate_edit_button($section, $type = 'text', $label = 'Edit')
 
 <!-- Modals for editing -->
 <style>
+    .social-icon {
+        width: 30px;
+        height: 30px;
+    }
+
     #editModal,
     #imageModal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1000;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+    }
+
+    #videoModal {
         display: none;
         /* Hidden by default */
         position: fixed;
@@ -612,42 +719,6 @@ function generate_edit_button($section, $type = 'text', $label = 'Edit')
         text-decoration: none;
         cursor: pointer;
     }
-
-    #video-modal {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.5);
-        z-index: 1000;
-    }
-
-    #video-modal .modal-content {
-        background: white;
-        padding: 20px;
-        width: 80%;
-        max-width: 500px;
-        margin: 50px auto;
-        border-radius: 5px;
-    }
-
-    .upload-status {
-        margin: 10px 0;
-        padding: 10px;
-        border-radius: 4px;
-    }
-
-    .upload-status[data-status="success"] {
-        background: #d4edda;
-        color: #155724;
-    }
-
-    .upload-status[data-status="error"] {
-        background: #f8d7da;
-        color: #721c24;
-    }
 </style>
 
 <div id="editModal">
@@ -666,6 +737,16 @@ function generate_edit_button($section, $type = 'text', $label = 'Edit')
         <h2>Upload Image</h2>
         <input type="file" id="uploadImage">
         <button onclick="uploadImage()">Upload</button>
+        <button onclick="closeModal()">Cancel</button>
+    </div>
+</div>
+
+<div id="videoModal">
+    <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h2>Upload Video</h2>
+        <input type="file" id="uploadVideo">
+        <button onclick="uploadVideo()">Upload</button>
         <button onclick="closeModal()">Cancel</button>
     </div>
 </div>
@@ -702,12 +783,15 @@ function generate_edit_button($section, $type = 'text', $label = 'Edit')
             }
         } else if (type === 'image') {
             document.getElementById('imageModal').style.display = 'block';
+        } else if (type === 'video') {
+            document.getElementById('videoModal').style.display = 'block';
         }
     }
 
     function closeModal() {
         document.getElementById('editModal').style.display = 'none';
         document.getElementById('imageModal').style.display = 'none';
+        document.getElementById('videoModal').style.display = 'none';
     }
 
     function saveContent() {
@@ -747,11 +831,71 @@ function generate_edit_button($section, $type = 'text', $label = 'Edit')
                 closeModal();
 
                 // Reload the page to ensure all content is updated
-                // setTimeout(() => {
-                //     location.reload();
-                // }, 1000);
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
             })
             .catch(error => console.error('Error:', error));
+    }
+
+    function uploadVideo() {
+        const fileInput = document.getElementById('uploadVideo');
+        const file = fileInput.files[0];
+
+        if (!file) {
+            alert('Please select a video file to upload');
+            return;
+        }
+
+        // Check file type
+        if (!file.type.startsWith('video/')) {
+            alert('Please select a valid video file');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('video', file);
+        formData.append('section', currentSection);
+
+        // Show loading indicator or disable button
+        const uploadButton = document.querySelector('#videoModal button');
+        if (uploadButton) {
+            uploadButton.disabled = true;
+            uploadButton.textContent = 'Uploading...';
+        }
+
+        // AJAX request to upload video
+        fetch('admin/ajax-handler-video.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                if (data.includes('success')) {
+                    // Refresh the video element    
+                    const videoElement = document.querySelector('video source[data-section="' + currentSection + '"]');
+                    if (videoElement) {
+                        // Force video reload by updating timestamp
+                        const currentSrc = videoElement.src;
+                        videoElement.src = currentSrc.split('?')[0] + '?t=' + new Date().getTime();
+                        videoElement.parentElement.load();
+                    }
+                    closeModal();
+                    location.reload();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred while uploading the video');
+            })
+            .finally(() => {
+                // Reset button state
+                if (uploadButton) {
+                    uploadButton.disabled = false;
+                    uploadButton.textContent = 'Upload';
+                }
+            });
     }
 
     function uploadImage() {
@@ -787,94 +931,6 @@ function generate_edit_button($section, $type = 'text', $label = 'Edit')
                 console.error('Error:', error);
                 alert('An error occurred while uploading the image');
             });
-    }
-
-    document.addEventListener('click', function(e) {
-        if (e.target.closest('[data-type="video"]')) {
-            const button = e.target.closest('[data-type="video"]');
-            const section = button.dataset.section;
-            openVideoModal(section);
-        }
-    });
-
-    function openVideoModal(section) {
-        // Create or show existing modal
-        const modal = document.getElementById('video-modal') || createVideoModal();
-
-        // Set up form
-        modal.querySelector('form').dataset.section = section;
-        modal.style.display = 'block';
-    }
-
-    function createVideoModal() {
-        const modal = document.createElement('div');
-        modal.id = 'video-modal';
-        modal.innerHTML = `
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h3>Edit Video</h3>
-                <form id="videoUploadForm" enctype="multipart/form-data">
-                    <input type="file" name="video" accept="video/mp4" required>
-                    <div class="upload-status"></div>
-                    <button type="submit">Upload Video</button>
-                </form>
-            </div>
-        `;
-
-        // Handle form submission
-        modal.querySelector('form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const form = e.target;
-            const status = form.querySelector('.upload-status');
-            const section = form.dataset.section;
-            const fileInput = form.querySelector('input[type="file"]');
-
-            if (!fileInput.files.length) {
-                status.innerHTML = 'Please select a video file';
-                return;
-            }
-
-            status.innerHTML = 'Uploading...';
-
-            try {
-                const formData = new FormData();
-                formData.append('image', fileInput.files[0]); // Keep 'image' key for existing handler
-                formData.append('section', section);
-
-                const response = await fetch('admin/ajax-handler-file.php', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                const result = await response.text();
-
-                if (response.ok) {
-                    // Update video source without refresh
-                    const videoElement = document.querySelector(`[data-section="${section}"] source`);
-                    if (videoElement) {
-                        videoElement.src = `${videoElement.src.split('?')[0]}?t=${Date.now()}`;
-                    }
-                    status.innerHTML = 'Video updated successfully!';
-                    setTimeout(() => {
-                        modal.style.display = 'none';
-                        status.innerHTML = '';
-                        location.reload();
-                    }, 2000);
-                } else {
-                    status.innerHTML = `Error: ${result}`;
-                }
-            } catch (error) {
-                status.innerHTML = `Upload failed: ${error.message}`;
-            }
-        });
-
-        modal.querySelector('.close').onclick = () => {
-            modal.style.display = 'none';
-            modal.querySelector('.upload-status').innerHTML = '';
-        };
-
-        document.body.appendChild(modal);
-        return modal;
     }
 </script>
 

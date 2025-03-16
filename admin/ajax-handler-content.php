@@ -115,6 +115,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pageContent['videoSection']['title'] = $content;
         file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         echo 'Video title updated successfully!';
+    } elseif (in_array(strtolower($section), ['facebook', 'instagram', 'tiktok', 'youtube', 'imo']) && isset($pageContent['socialMedia'])) {
+        $platform = strtolower($section);
+
+        if (array_key_exists($platform, $pageContent['socialMedia'])) {
+            // Update URL
+            $pageContent['socialMedia'][$platform]['url'] = $content;
+
+            file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+            echo 'Social media link updated successfully!';
+        } else {
+            echo 'Invalid social media platform';
+        }
     } else {
         echo 'Failed to update content: Section not found or not supported.';
     }
