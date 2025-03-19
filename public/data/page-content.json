@@ -17,13 +17,13 @@
         },
         "regularPrice": {
             "label": "রেগুলার মূল্যঃ",
-            "amount": "1990",
+            "amount": "4990",
             "amount_in_english": "1990",
             "currency": "টাকা"
         },
         "offerPrice": {
             "label": "বর্তমান অফার মূল্যঃ",
-            "amount": "1490",
+            "amount": "4000",
             "amount_in_english": "1490",
             "currency": "টাকা"
         }
@@ -174,7 +174,29 @@
     },
     "videoSection": {
         "title": "Demo Video Title",
-        "src": "wp-content\/uploads\/2025\/01\/67d6a61d3e041_sample-video.mp4"
+        "src": "wp-content\/uploads\/2025\/01\/67d714915155e_WhatsApp Video 2025-03-16 at 11.46.27 PM (1).mp4"
+    },
+    "socialMedia": {
+        "facebook": {
+            "url": "https:\/\/www.facebook.com\/share\/15eA6Rxzub\/",
+            "icon": "https:\/\/cdn1.iconfinder.com\/data\/icons\/logotypes\/32\/facebook-256.png"
+        },
+        "instagram": {
+            "url": "https:\/\/www.instagram.com\/ariyanhossainhridoy7?igsh=MXRqaTBxcjk0eXlzdw==",
+            "icon": "https:\/\/cdn2.iconfinder.com\/data\/icons\/social-icons-33\/128\/Instagram-256.png"
+        },
+        "youtube": {
+            "url": "https:\/\/youtube.com\/@hridoyzoneofficials?si=QKhA0bXcsapX-jTK",
+            "icon": "https:\/\/cdn4.iconfinder.com\/data\/icons\/social-media-flat-7\/64\/Social-media_Youtube-256.png"
+        },
+        "tiktok": {
+            "url": "https:\/\/www.tiktok.com\/@a.r.i.y.a.n.hridoy?_t=ZS-8ujJJN35Lom&_r=1",
+            "icon": "https:\/\/cdn0.iconfinder.com\/data\/icons\/logos-brands-7\/512\/TikTok_logo_app0-256.png"
+        },
+        "imo": {
+            "url": "https:\/\/imo.im\/yourprofile",
+            "icon": "https:\/\/cdn3.iconfinder.com\/data\/icons\/social-media-2169\/24\/social_media_social_media_logo_imo-256.png"
+        }
     },
     "testimonialsSection": {
         "title": "গ্রাহকদের অভিমত",
@@ -265,11 +287,14 @@
                 }
             },
             "order": {
+                "heading": "আপনার অর্ডার",
+                "deliveryMessage": "প্রথম অর্ডার টি ডেলিভারি চার্জ ফ্রী 23",
                 "title": "Your order",
                 "headers": {
                     "product": "Product",
                     "subtotal": "Subtotal"
                 },
+                 "paymentMessage": "পন্য হাতে পেয়ে ডেলিভারি ম্যানকে পেমেন্ট করুন 2",
                 "payment": {
                     "method": "Cash on delivery",
                     "description": "Pay with cash upon delivery."
@@ -303,28 +328,6 @@
             }
         }
     },
-    "socialMedia": {
-        "facebook": {
-            "url": "https:\/\/www.facebook.com\/fantasycricketmanager",
-            "icon": "https:\/\/cdn1.iconfinder.com\/data\/icons\/logotypes\/32\/facebook-256.png"
-        },
-        "instagram": {
-            "url": "https:\/\/instagram.com\/yourprofile",
-            "icon": "https:\/\/cdn2.iconfinder.com\/data\/icons\/social-icons-33\/128\/Instagram-256.png"
-        },
-        "youtube": {
-            "url": "https:\/\/www.youtube.com\/watch?v=GgfrCDLfUyY",
-            "icon": "https:\/\/cdn4.iconfinder.com\/data\/icons\/social-media-flat-7\/64\/Social-media_Youtube-256.png"
-        },
-        "tiktok": {
-            "url": "https:\/\/tiktok.com\/@yourprofile",
-            "icon": "https:\/\/cdn0.iconfinder.com\/data\/icons\/logos-brands-7\/512\/TikTok_logo_app0-256.png"
-        },
-        "imo": {
-            "url": "https:\/\/imo.im\/yourprofile",
-            "icon": "https:\/\/cdn3.iconfinder.com\/data\/icons\/social-media-2169\/24\/social_media_social_media_logo_imo-256.png"
-        }
-    },
     "productSection": {
         "title": "Moms touch2",
         "subtitle": "সাফরন টাইম ডেভ",
@@ -332,11 +335,15 @@
         "textAlign": "center",
         "titleColor": "#000000",
         "subtitleColor": "#000000",
-        "image": "wp-content\/uploads\/2025\/01\/67d2b8590cfb0_ezgif.com-webp-to-jpg-converter-10.jpg"
+        "image": "wp-content\/uploads\/2025\/01\/67d6cba40b558_363436076_716866590484635_115793086366272941_n.jpg"
     },
     "contactInfo": {
+        "label": "অর্ডার করতে কোন সমস্যা হলে সরাসরি যোগাযোগ করুন 2",
         "phone": "মোবাইল নাম্বার",
-        "value": "017171717172"
+        "value": "01768627593"
+    },
+    "paymentBanner": {
+        "src": "wp-content\/uploads\/2025\/01\/67db3712a21d2_payment-banner.png"
     },
     "": []
 }
