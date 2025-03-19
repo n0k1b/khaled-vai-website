@@ -37,6 +37,9 @@ $contactInfo = $pageContent['contactInfo'] ?? [];
 $videoSection = $pageContent['videoSection'] ?? [];
 $socialMedia = $pageContent['socialMedia'] ?? [];
 
+// Access order section data
+$orderSection = $pageContent['orderSection'] ?? [];
+
 // Helper function to replace Laravel's e() helper
 function escape($value)
 {
@@ -531,17 +534,32 @@ function generate_edit_button($section, $type = 'text')
                         <div class="elementor-element elementor-element-468be44 elementor-widget elementor-widget-heading"
                             data-id="468be44" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default">অর্ডার করতে কোন সমস্যা
-                                    হলে সরাসরি যোগাযোগ করুন</h2>
+                                <h2 class="elementor-heading-title elementor-size-default mb-4">অর্ডার করতে কোন সমস্যা হলে সরাসরি যোগাযোগ করুন</h2>
+                                <div class="flex flex-row items-center justify-center gap-4">
 
 
+                                    <div class="flex items-center gap-3">
+                                    <a href="https://wa.me/<?php echo preg_replace('/[^0-9]/', '', $contactInfo['value']); ?>"
+                                           target="_blank"
+                                           rel="noopener noreferrer"
+                                           style="padding: 10px;"
+                                           class="inline-flex items-center transition-transform duration-300 hover:scale-110">
+                                            <img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Whatsapp2_colored_svg-256.png"
+                                                 alt="WhatsApp"
+                                                 class="social-icon"
+                                                 style="width: 28px; height: 28px; margin-top: 10px;"
+                                                 loading="lazy">
+                                        </a>
+                                        <span class="elementor-heading-title elementor-size-default m-0" data-section="contactInfo">
+                                            <?php echo $contactInfo['value'] ?>
+                                        </span>
+                                    </div>
+                                    <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
+                                        <?php echo generate_edit_button('contactInfo'); ?>
+                                    <?php endif; ?>
+                                </div>
                             </div>
-                            <h2 class="elementor-heading-title elementor-size-default" data-section="contactInfo"><?php echo $contactInfo['value'] ?></h2>
-                            <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
-                                <?php echo generate_edit_button('contactInfo'); ?>
-                            <?php endif; ?>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -758,7 +776,11 @@ function generate_edit_button($section, $type = 'text')
         currentSection = section;
         if (type === 'text') {
             document.getElementById('editModal').style.display = 'block';
+            console.log(section);
+
+
             const element = document.querySelector(`[data-section="${section}"]`);
+            console.log(element);
             if (element) {
                 // Get the text content, excluding any child elements (like the edit button)
                 const textContent = Array.from(element.childNodes)

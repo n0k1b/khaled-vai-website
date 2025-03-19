@@ -115,6 +115,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pageContent['videoSection']['title'] = $content;
         file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         echo 'Video title updated successfully!';
+    }
+    elseif ($section === 'orderPaymentSection' && isset($pageContent['orderSection'])) {
+        $pageContent['orderSection']['form']['order']['paymentMessage'] = $content;
+        file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        echo 'Content updated successfully!';
+    } elseif ($section === 'orderSection' && isset($pageContent['orderSection'])) {
+        $pageContent['orderSection']['form']['order']['deliveryMessage'] = $content;
+        file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        echo 'Content updated successfully!';
     } elseif (in_array(strtolower($section), ['facebook', 'instagram', 'tiktok', 'youtube', 'imo']) && isset($pageContent['socialMedia'])) {
         $platform = strtolower($section);
 

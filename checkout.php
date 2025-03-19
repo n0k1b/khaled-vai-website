@@ -155,6 +155,12 @@
 
                                                 </div>
 
+                                                <div class="" data-section="orderPaymentSection" data-type="text"  style="margin-top: 20px; padding: 10px; background-color:rgb(53, 20, 236); border-radius: 5px; text-align: center; color: white; font-size: 18px; font-weight: bold;">
+                                                    <?php echo $orderSection['form']['order']['paymentMessage'] ?? 'পন্য হাতে পেয়ে ডেলিভারি ম্যানকে পেমেন্ট করুন'; ?>
+
+                                                </div>
+                                                <?php echo generate_edit_button('orderPaymentSection', 'text'); ?>
+
                                             </div>
 
                                             <div class="wcf-col-2 col-2">
@@ -175,17 +181,12 @@
 
 
                                         <div class='wcf-order-wrap'>
+                                            <h3 id="order_review_heading">
+                                                <?php echo $orderSection['form']['order']['heading'] ?? 'আপনার অর্ডার'; ?>
+                                            </h3>
 
-
-
-                                            <h3 id="order_review_heading">Your order</h3>
-
-
-                                            <div id="order_review2"
-                                                class="">
-                                                <table
-                                                    class="shop_table"
-                                                    data-update-time="1741424837">
+                                            <div id="order_review2" class="">
+                                                <table class="shop_table" data-update-time="1741424837">
                                                     <thead>
                                                         <tr>
                                                             <th class="product-name">Product</th>
@@ -244,7 +245,10 @@
                                                             </div>
                                                         </li>
                                                     </ul>
-                                                    <img src="public/regular-delivery.jpg" alt="Payment Banner">
+
+                                                    <div class="order_review_heading" style="background-color:rgb(53, 15, 15); padding: 10px; border-radius: 5px; text-align: center; color: white;">
+                                                        <p data-section="orderSection" data-type="text"><?php echo $orderSection['form']['order']['deliveryMessage'] ?? 'প্রথম অর্ডার টি ডেলিভারি চার্জ ফ্রী'; ?> <span class="edit-button" style="margin-left: 10px; border: 1px solid white; padding: 5px; border-radius: 5px; cursor: pointer;" onclick="openEditModal('orderSection', 'text')" >Edit</span></p>
+                                                    </div>
                                                     <div class="form-row place-order">
                                                         <noscript>
                                                             Since your browser does not support JavaScript,

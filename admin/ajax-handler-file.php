@@ -101,7 +101,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
                 } else {
                     echo 'Failed to update image: Invalid index.';
                 }
-            } elseif (strpos($section, 'instructionImage') === 0 && isset($pageContent['instructionsSection']['images'])) {
+            }
+            elseif (strpos($section, 'instructionImage') === 0 && isset($pageContent['instructionsSection']['images'])) {
                 $imageIndex = intval(substr($section, strlen('instructionImage')));
                 if (isset($pageContent['instructionsSection']['images'][$imageIndex])) {
                     $pageContent['instructionsSection']['images'][$imageIndex]['src'] = $relativePath;
