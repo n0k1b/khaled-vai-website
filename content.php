@@ -39,7 +39,7 @@ $socialMedia = $pageContent['socialMedia'] ?? [];
 
 // Access order section data
 $orderSection = $pageContent['orderSection'] ?? [];
-
+$paymentBanner = $pageContent['paymentBanner'] ?? [];
 // Helper function to replace Laravel's e() helper
 function escape($value)
 {
@@ -520,8 +520,9 @@ function generate_edit_button($section, $type = 'text')
         </section>
         <?php include 'checkout.php'; ?>
 
-        <section style="text-align: center;">
-            <img src="public/payment-banner.png" alt="Payment Banner">
+        <section style="text-align: center; margin-bottom: 20px;" data-section="paymentBanner">
+            <img src="<?php echo escape($paymentBanner['src']); ?>" alt="Payment Banner">
+            <?php echo generate_edit_button('paymentBanner', 'image'); ?>
         </section>
         <section
             class="elementor-section elementor-top-section elementor-element elementor-element-2f1a973 elementor-section-boxed elementor-section-height-default elementor-section-height-default"
@@ -534,7 +535,7 @@ function generate_edit_button($section, $type = 'text')
                         <div class="elementor-element elementor-element-468be44 elementor-widget elementor-widget-heading"
                             data-id="468be44" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default mb-4">অর্ডার করতে কোন সমস্যা হলে সরাসরি যোগাযোগ করুন</h2>
+                                <h2 class="elementor-heading-title elementor-size-default mb-4" data-section="contactInfoLabel"><?php echo escape($contactInfo['label']); ?></h2>  <?php echo generate_edit_button('contactInfoLabel','text'); ?>
                                 <div class="flex flex-row items-center justify-center gap-4">
 
 

@@ -115,8 +115,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pageContent['videoSection']['title'] = $content;
         file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         echo 'Video title updated successfully!';
-    }
-    elseif ($section === 'orderPaymentSection' && isset($pageContent['orderSection'])) {
+    } elseif ($section === 'contactInfoLabel' && isset($pageContent['contactInfo'])) {
+        $pageContent['contactInfo']['label'] = $content;
+        file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        echo 'Content updated successfully!';
+    } elseif ($section === 'orderPaymentSection' && isset($pageContent['orderSection'])) {
         $pageContent['orderSection']['form']['order']['paymentMessage'] = $content;
         file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         echo 'Content updated successfully!';

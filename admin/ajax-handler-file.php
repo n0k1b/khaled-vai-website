@@ -111,6 +111,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['image'])) {
                 } else {
                     echo 'Failed to update image: Invalid index.';
                 }
+            } elseif ($section === 'paymentBanner' && isset($pageContent['paymentBanner'])) {
+                $pageContent['paymentBanner']['src'] = $relativePath;
+                file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+                echo 'Payment banner image updated successfully!';
             } else {
                 echo 'Failed to update JSON content: Section not found or not supported.';
             }
