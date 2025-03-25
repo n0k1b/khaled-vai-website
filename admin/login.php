@@ -6,20 +6,22 @@ try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
+        $referenceNo = $_SERVER['REFERENCE_NO']; // Get reference number from environment variable
 
-        // Query the database for the user
+        // Query the database for the user with email
         $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->execute([$username]);
         $user = $stmt->fetch();
 
-        if ($user && password_verify($password, $user['password'])) {
+        // Verify both password and reference number
+        if ($user && password_verify($password, $user['password']) && $referenceNo === $user['reference_number']) {
             $_SESSION['logged_in'] = true;
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_role'] = $user['role'];
             header('Location: ../admin/dashboard.php');
             exit;
         } else {
-            $error = 'Invalid username or password';
+            $error = 'Invalid credentials. Please try again.';
         }
     }
 } catch (\PDOException $e) {
@@ -141,7 +143,7 @@ try {
                     <span class="input-group-text">
                         <i class="fas fa-user"></i>
                     </span>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Username" required>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Email" required>
                 </div>
 
                 <div class="input-group mb-3">

@@ -155,7 +155,7 @@
 
                                                 </div>
 
-                                                <div class="" data-section="orderPaymentSection" data-type="text"  style="margin-top: 20px; padding: 10px; background-color:rgb(53, 20, 236); border-radius: 5px; text-align: center; color: white; font-size: 18px; font-weight: bold;">
+                                                <div class="" data-section="orderPaymentSection" data-type="text"  style="margin-top: 20px; padding: 40px; background-color:rgb(53, 20, 236); border-radius: 5px; text-align: center; color: white; font-size: 24px; font-weight: bold;">
                                                     <?php echo $orderSection['form']['order']['paymentMessage'] ?? 'পন্য হাতে পেয়ে ডেলিভারি ম্যানকে পেমেন্ট করুন'; ?>
 
                                                 </div>
