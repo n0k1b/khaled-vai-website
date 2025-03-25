@@ -40,6 +40,9 @@ $socialMedia = $pageContent['socialMedia'] ?? [];
 // Access order section data
 $orderSection = $pageContent['orderSection'] ?? [];
 $paymentBanner = $pageContent['paymentBanner'] ?? [];
+
+$instructionsSection = $pageContent['instructionsSection'] ?? [];
+$mobileInfo = $pageContent['mobileInfo'] ?? [];
 // Helper function to replace Laravel's e() helper
 function escape($value)
 {
@@ -62,7 +65,7 @@ function generate_edit_button($section, $type = 'text')
     <div data-elementor-type="wp-post" data-elementor-id="23" class="elementor elementor-23"
         data-elementor-post-type="cartflows_step">
         <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
-            <button class="edit-button" onclick="openEditModal('heroBackground', 'image')">Edit Background Image</button>
+        <button class="edit-button" onclick="openEditModal('heroBackground', 'image')">Edit Background Image</button>
         <?php endif; ?>
         <section
             class="elementor-section elementor-top-section elementor-element elementor-element-7046c9b elementor-section-height-min-height elementor-section-boxed elementor-section-height-default elementor-section-items-middle"
@@ -107,13 +110,15 @@ function generate_edit_button($section, $type = 'text')
                                         href="<?php echo escape($heroSection['ctaButton']['link'] ?? '#'); ?>">
                                         <span class="elementor-button-content-wrapper">
                                             <?php if (isset($heroSection['ctaButton']['icon'])): ?>
-                                                <span class="elementor-button-icon">
-                                                    <svg aria-hidden="true" class="e-font-icon-svg e-<?php echo escape($heroSection['ctaButton']['icon']); ?>"
-                                                        viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M428.8 137.6h-86.177a115.52 115.52 0 0 0 2.176-22.4c0-47.914-35.072-83.2-92-83.2-45.314 0-57.002 48.537-75.707 78.784-7.735 12.413-16.994 23.317-25.851 33.253l-.131.146-.129.148C135.662 161.807 127.764 168 120.8 168h-2.679c-5.747-4.952-13.536-8-22.12-8H32c-17.673 0-32 12.894-32 28.8v230.4C0 435.106 14.327 448 32 448h64c8.584 0 16.373-3.048 22.12-8h2.679c28.688 0 67.137 40 127.2 40h21.299c62.542 0 98.8-38.658 99.94-91.145 12.482-17.813 18.491-40.785 15.985-62.791A93.148 93.148 0 0 0 393.152 304H428.8c45.435 0 83.2-37.584 83.2-83.2 0-45.099-38.101-83.2-83.2-83.2zm0 118.4h-91.026c12.837 14.669 14.415 42.825-4.95 61.05 11.227 19.646 1.687 45.624-12.925 53.625 6.524 39.128-10.076 61.325-50.6 61.325H248c-45.491 0-77.21-35.913-120-39.676V215.571c25.239-2.964 42.966-21.222 59.075-39.596 11.275-12.65 21.725-25.3 30.799-39.875C232.355 112.712 244.006 80 252.8 80c23.375 0 44 8.8 44 35.2 0 35.2-26.4 53.075-26.4 70.4h158.4c18.425 0 35.2 16.5 35.2 35.2 0 18.975-16.225 35.2-35.2 35.2zM88 384c0 13.255-10.745 24-24 24s-24-10.745-24-24 10.745-24 24-24 24 10.745 24 24z">
-                                                        </path>
-                                                    </svg>
-                                                </span>
+                                            <span class="elementor-button-icon">
+                                                <svg aria-hidden="true"
+                                                    class="e-font-icon-svg e-<?php echo escape($heroSection['ctaButton']['icon']); ?>"
+                                                    viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="M428.8 137.6h-86.177a115.52 115.52 0 0 0 2.176-22.4c0-47.914-35.072-83.2-92-83.2-45.314 0-57.002 48.537-75.707 78.784-7.735 12.413-16.994 23.317-25.851 33.253l-.131.146-.129.148C135.662 161.807 127.764 168 120.8 168h-2.679c-5.747-4.952-13.536-8-22.12-8H32c-17.673 0-32 12.894-32 28.8v230.4C0 435.106 14.327 448 32 448h64c8.584 0 16.373-3.048 22.12-8h2.679c28.688 0 67.137 40 127.2 40h21.299c62.542 0 98.8-38.658 99.94-91.145 12.482-17.813 18.491-40.785 15.985-62.791A93.148 93.148 0 0 0 393.152 304H428.8c45.435 0 83.2-37.584 83.2-83.2 0-45.099-38.101-83.2-83.2-83.2zm0 118.4h-91.026c12.837 14.669 14.415 42.825-4.95 61.05 11.227 19.646 1.687 45.624-12.925 53.625 6.524 39.128-10.076 61.325-50.6 61.325H248c-45.491 0-77.21-35.913-120-39.676V215.571c25.239-2.964 42.966-21.222 59.075-39.596 11.275-12.65 21.725-25.3 30.799-39.875C232.355 112.712 244.006 80 252.8 80c23.375 0 44 8.8 44 35.2 0 35.2-26.4 53.075-26.4 70.4h158.4c18.425 0 35.2 16.5 35.2 35.2 0 18.975-16.225 35.2-35.2 35.2zM88 384c0 13.255-10.745 24-24 24s-24-10.745-24-24 10.745-24 24-24 24 10.745 24 24z">
+                                                    </path>
+                                                </svg>
+                                            </span>
                                             <?php endif; ?>
                                             <span class="elementor-button-text" data-section="heroSection">
                                                 <?php echo escape($heroSection['ctaButton']['text']); ?>
@@ -138,8 +143,7 @@ function generate_edit_button($section, $type = 'text')
                         d="M0 0L0 18.8 141.8 4.1 283.5 18.8 283.5 0z" />
                     <path class="elementor-shape-fill" style="opacity:0.33"
                         d="M0 0L0 12.6 141.8 4 283.5 12.6 283.5 0z" />
-                    <path class="elementor-shape-fill" style="opacity:0.33"
-                        d="M0 0L0 6.4 141.8 4 283.5 6.4 283.5 0z" />
+                    <path class="elementor-shape-fill" style="opacity:0.33" d="M0 0L0 6.4 141.8 4 283.5 6.4 283.5 0z" />
                     <path class="elementor-shape-fill" d="M0 0L0 1.2 141.8 4 283.5 1.2 283.5 0z" />
                 </svg>
             </div>
@@ -169,17 +173,20 @@ function generate_edit_button($section, $type = 'text')
                             data-widget_type="animated-headline.default">
                             <div class="elementor-widget-container">
                                 <h3 class="elementor-headline">
-                                    <span class="elementor-headline-plain-text elementor-headline-text-wrapper" data-section="regularPriceLabel">
+                                    <span class="elementor-headline-plain-text elementor-headline-text-wrapper"
+                                        data-section="regularPriceLabel">
                                         <?php echo escape($pricingSection['regularPrice']['label']); ?>
                                         <?php echo generate_edit_button('regularPriceLabel', 'text'); ?>
                                     </span>
                                     <span class="elementor-headline-dynamic-wrapper elementor-headline-text-wrapper">
-                                        <span class="elementor-headline-dynamic-text elementor-headline-text-active" data-section="regularPriceAmount">
+                                        <span class="elementor-headline-dynamic-text elementor-headline-text-active"
+                                            data-section="regularPriceAmount">
                                             <?php echo escape($pricingSection['regularPrice']['amount']); ?>
                                             <?php echo generate_edit_button('regularPriceAmount', 'text'); ?>
                                         </span>
                                     </span>
-                                    <span class="elementor-headline-plain-text elementor-headline-text-wrapper" data-section="regularPriceCurrency">
+                                    <span class="elementor-headline-plain-text elementor-headline-text-wrapper"
+                                        data-section="regularPriceCurrency">
                                         <?php echo escape($pricingSection['regularPrice']['currency']); ?>
                                         <?php echo generate_edit_button('regularPriceCurrency', 'text'); ?>
                                     </span>
@@ -192,17 +199,20 @@ function generate_edit_button($section, $type = 'text')
                             data-widget_type="animated-headline.default">
                             <div class="elementor-widget-container">
                                 <h3 class="elementor-headline">
-                                    <span class="elementor-headline-plain-text elementor-headline-text-wrapper" data-section="offerPriceLabel">
+                                    <span class="elementor-headline-plain-text elementor-headline-text-wrapper"
+                                        data-section="offerPriceLabel">
                                         <?php echo escape($pricingSection['offerPrice']['label']); ?>
                                         <?php echo generate_edit_button('offerPriceLabel', 'text'); ?>
                                     </span>
                                     <span class="elementor-headline-dynamic-wrapper elementor-headline-text-wrapper">
-                                        <span class="elementor-headline-dynamic-text elementor-headline-text-active" data-section="offerPriceAmount">
+                                        <span class="elementor-headline-dynamic-text elementor-headline-text-active"
+                                            data-section="offerPriceAmount">
                                             <?php echo escape($pricingSection['offerPrice']['amount']); ?>
                                             <?php echo generate_edit_button('offerPriceAmount', 'text'); ?>
                                         </span>
                                     </span>
-                                    <span class="elementor-headline-plain-text elementor-headline-text-wrapper" data-section="offerPriceCurrency">
+                                    <span class="elementor-headline-plain-text elementor-headline-text-wrapper"
+                                        data-section="offerPriceCurrency">
                                         <?php echo escape($pricingSection['offerPrice']['currency']); ?>
                                         <?php echo generate_edit_button('offerPriceCurrency', 'text'); ?>
                                     </span>
@@ -235,26 +245,24 @@ function generate_edit_button($section, $type = 'text')
                             data-id="571e5eb" data-element_type="section">
                             <div class="elementor-container elementor-column-gap-default">
                                 <?php foreach (($images['productImages'] ?? []) as $index => $image): ?>
-                                    <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element"
-                                        data-id="7d4ed6a" data-element_type="column">
-                                        <div class="elementor-widget-wrap elementor-element-populated">
-                                            <div class="elementor-element elementor-widget elementor-widget-image"
-                                                data-widget_type="image.default">
-                                                <div class="elementor-widget-container">
-                                                    <img <?php echo $index === 0 ? 'fetchpriority="high"' : ''; ?>
-                                                        decoding="async"
-                                                        width="<?php echo escape($image['width']); ?>"
-                                                        height="<?php echo escape($image['height']); ?>"
-                                                        src="<?php echo escape($image['src']); ?>"
-                                                        class="attachment-large size-large"
-                                                        alt="<?php echo escape($image['alt']); ?>"
-
-                                                        sizes="(max-width: <?php echo escape($image['width']); ?>px) 100vw, <?php echo escape($image['width']); ?>px" />
-                                                    <?php echo generate_edit_button('productImage' . $index, 'image'); ?>
-                                                </div>
+                                <div class="elementor-column elementor-col-33 elementor-inner-column elementor-element"
+                                    data-id="7d4ed6a" data-element_type="column">
+                                    <div class="elementor-widget-wrap elementor-element-populated">
+                                        <div class="elementor-element elementor-widget elementor-widget-image"
+                                            data-widget_type="image.default">
+                                            <div class="elementor-widget-container">
+                                                <img <?php echo $index === 0 ? 'fetchpriority="high"' : ''; ?>
+                                                    decoding="async" width="<?php echo escape($image['width']); ?>"
+                                                    height="<?php echo escape($image['height']); ?>"
+                                                    src="<?php echo escape($image['src']); ?>"
+                                                    class="attachment-large size-large"
+                                                    alt="<?php echo escape($image['alt']); ?>"
+                                                    sizes="(max-width: <?php echo escape($image['width']); ?>px) 100vw, <?php echo escape($image['width']); ?>px" />
+                                                <?php echo generate_edit_button('productImage' . $index, 'image'); ?>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 <?php endforeach; ?>
                             </div>
                         </section>
@@ -263,14 +271,13 @@ function generate_edit_button($section, $type = 'text')
                             <div class="elementor-widget-container">
                                 <?php if (isset($images['bottomImage'])): ?>
 
-                                    <img
-                                        width="<?php echo escape($images['bottomImage']['width']); ?>"
-                                        height="<?php echo escape($images['bottomImage']['height']); ?>"
-                                        src="<?php echo escape($images['bottomImage']['src']); ?>"
-                                        class="attachment-large size-large"
-                                        alt="<?php echo escape($images['bottomImage']['alt']); ?>"
-                                        sizes="(max-width: <?php echo escape($images['bottomImage']['width']); ?>px) 100vw, <?php echo escape($images['bottomImage']['width']); ?>px" />
-                                    <?php echo generate_edit_button('bottomImage', 'image'); ?>
+                                <img width="<?php echo escape($images['bottomImage']['width']); ?>"
+                                    height="<?php echo escape($images['bottomImage']['height']); ?>"
+                                    src="<?php echo escape($images['bottomImage']['src']); ?>"
+                                    class="attachment-large size-large"
+                                    alt="<?php echo escape($images['bottomImage']['alt']); ?>"
+                                    sizes="(max-width: <?php echo escape($images['bottomImage']['width']); ?>px) 100vw, <?php echo escape($images['bottomImage']['width']); ?>px" />
+                                <?php echo generate_edit_button('bottomImage', 'image'); ?>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -278,11 +285,14 @@ function generate_edit_button($section, $type = 'text')
                 </div>
             </div>
         </section>
-        <section class="elementor-section elementor-top-section elementor-element elementor-element-c714ef5 elementor-section-boxed elementor-section-height-default elementor-section-height-default">
+        <section
+            class="elementor-section elementor-top-section elementor-element elementor-element-c714ef5 elementor-section-boxed elementor-section-height-default elementor-section-height-default">
             <div class="elementor-container elementor-column-gap-default">
-                <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-4abe0f1">
+                <div
+                    class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-4abe0f1">
                     <div class="elementor-widget-wrap elementor-element-populated">
-                        <div class="elementor-element elementor-element-1c86491 elementor-widget elementor-widget-heading">
+                        <div
+                            class="elementor-element elementor-element-1c86491 elementor-widget elementor-widget-heading">
                             <div class="elementor-widget-container">
                                 <h2 class="elementor-heading-title elementor-size-default" data-section="videoTitle">
                                     <?php echo escape($videoSection['title'] ?? ''); ?>
@@ -291,11 +301,13 @@ function generate_edit_button($section, $type = 'text')
                             </div>
                         </div>
                         <?php echo generate_edit_button('videoSource', 'video', 'Edit Video Source'); ?>
-                        <div class="elementor-element elementor-element-2a8b4c1 elementor-widget elementor-widget-video">
+                        <div
+                            class="elementor-element elementor-element-2a8b4c1 elementor-widget elementor-widget-video">
                             <div class="elementor-widget-container">
                                 <div class="elementor-wrapper">
                                     <video controls style="width: 100%; max-width: 1200px; margin: 0 auto;">
-                                        <source src="<?php echo escape($videoSection['src'] ?? ''); ?>" type="video/mp4" data-section="videoSource">
+                                        <source src="<?php echo escape($videoSection['src'] ?? ''); ?>" type="video/mp4"
+                                            data-section="videoSource">
                                         <?php echo generate_edit_button('videoSource', 'video', 'Edit Video'); ?>
                                         Your browser does not support the video tag.
                                     </video>
@@ -316,7 +328,8 @@ function generate_edit_button($section, $type = 'text')
                         <div class="elementor-element elementor-element-1c86491 elementor-widget elementor-widget-heading"
                             data-id="1c86491" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default" data-section="testimonialsTitle">
+                                <h2 class="elementor-heading-title elementor-size-default"
+                                    data-section="testimonialsTitle">
                                     <?php echo escape($testimonialsSection['title']); ?>
                                     <?php echo generate_edit_button('testimonialsTitle', 'text'); ?>
                                 </h2>
@@ -331,16 +344,15 @@ function generate_edit_button($section, $type = 'text')
                                     aria-roledescription="carousel" aria-label="Image Carousel" dir="ltr">
                                     <div class="elementor-image-carousel swiper-wrapper" aria-live="off">
                                         <?php foreach (($testimonialsSection['testimonialImages'] ?? []) as $index => $image): ?>
-                                            <div class="swiper-slide" role="group" aria-roledescription="slide"
-                                                aria-label="<?php echo escape($index + 1); ?> of <?php echo escape(count($testimonialsSection['testimonialImages'])); ?>">
-                                                <figure class="swiper-slide-inner">
-                                                    <img decoding="async"
-                                                        class="swiper-slide-image"
-                                                        src="<?php echo escape($image['src']); ?>"
-                                                        alt="<?php echo escape($image['alt']); ?>" />
-                                                    <?php echo generate_edit_button('testimonialImage' . $index, 'image'); ?>
-                                                </figure>
-                                            </div>
+                                        <div class="swiper-slide" role="group" aria-roledescription="slide"
+                                            aria-label="<?php echo escape($index + 1); ?> of <?php echo escape(count($testimonialsSection['testimonialImages'])); ?>">
+                                            <figure class="swiper-slide-inner">
+                                                <img decoding="async" class="swiper-slide-image"
+                                                    src="<?php echo escape($image['src']); ?>"
+                                                    alt="<?php echo escape($image['alt']); ?>" />
+                                                <?php echo generate_edit_button('testimonialImage' . $index, 'image'); ?>
+                                            </figure>
+                                        </div>
                                         <?php endforeach; ?>
                                     </div>
                                     <div class="elementor-swiper-button elementor-swiper-button-prev" role="button"
@@ -380,7 +392,8 @@ function generate_edit_button($section, $type = 'text')
                         <div class="elementor-element elementor-element-97a41fc elementor-widget elementor-widget-heading"
                             data-id="97a41fc" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default" data-section="guaranteeTitle">
+                                <h2 class="elementor-heading-title elementor-size-default"
+                                    data-section="guaranteeTitle">
                                     <?php echo escape($guaranteeSection['title']); ?>
                                     <?php echo generate_edit_button('guaranteeTitle', 'text'); ?>
                                 </h2>
@@ -400,7 +413,8 @@ function generate_edit_button($section, $type = 'text')
                         <div class="elementor-element elementor-element-c408f25 elementor-widget elementor-widget-heading"
                             data-id="c408f25" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default" data-section="solutionsTitle">
+                                <h2 class="elementor-heading-title elementor-size-default"
+                                    data-section="solutionsTitle">
                                     <?php echo escape($solutionsSection['title']); ?>
                                     <?php echo generate_edit_button('solutionsTitle', 'text'); ?>
                                 </h2>
@@ -414,8 +428,7 @@ function generate_edit_button($section, $type = 'text')
                                         href="<?php echo escape($button['href']); ?>">
                                         <span class="elementor-button-content-wrapper">
                                             <span class="elementor-button-icon">
-                                                <svg aria-hidden="true"
-                                                    class="e-font-icon-svg e-far-hand-point-right"
+                                                <svg aria-hidden="true" class="e-font-icon-svg e-far-hand-point-right"
                                                     viewBox="<?php echo escape($button['icon']['viewBox']); ?>"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path d="<?php echo escape($button['icon']['path']); ?>">
@@ -443,7 +456,8 @@ function generate_edit_button($section, $type = 'text')
         ];
         ?>
 
-        <section class="elementor-section elementor-top-section elementor-element elementor-element-9a45dbf elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+        <section
+            class="elementor-section elementor-top-section elementor-element elementor-element-9a45dbf elementor-section-boxed elementor-section-height-default elementor-section-height-default"
             data-id="9a45dbf" data-element_type="section">
             <div class="elementor-container elementor-column-gap-default">
                 <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-0e424df"
@@ -453,7 +467,8 @@ function generate_edit_button($section, $type = 'text')
                         <div class="elementor-element elementor-element-8088753 elementor-widget elementor-widget-heading"
                             data-id="8088753" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default" data-section="ingredientsTitle">
+                                <h2 class="elementor-heading-title elementor-size-default"
+                                    data-section="ingredientsTitle">
                                     <?php echo escape($ingredientsSection['title']); ?>
                                     <?php echo generate_edit_button('ingredientsTitle', 'text'); ?>
                                 </h2>
@@ -466,18 +481,20 @@ function generate_edit_button($section, $type = 'text')
                             <div class="elementor-widget-container">
                                 <ul class="elementor-icon-list-items">
                                     <?php foreach (($ingredientsSection['benefits'] ?? []) as $index => $benefit): ?>
-                                        <li class="elementor-icon-list-item">
-                                            <span class="elementor-icon-list-icon">
-                                                <svg aria-hidden="true" class="e-font-icon-svg e-fas-check-double"
-                                                    viewBox="<?php echo escape($checkIcon['viewBox']); ?>" xmlns="http://www.w3.org/2000/svg">
-                                                    <path d="<?php echo escape($checkIcon['path']); ?>"></path>
-                                                </svg>
-                                            </span>
-                                            <span class="elementor-icon-list-text" data-section="ingredientsBenefit<?php echo $index; ?>">
-                                                <?php echo escape($benefit); ?>
-                                                <?php echo generate_edit_button('ingredientsBenefit' . $index, 'text'); ?>
-                                            </span>
-                                        </li>
+                                    <li class="elementor-icon-list-item">
+                                        <span class="elementor-icon-list-icon">
+                                            <svg aria-hidden="true" class="e-font-icon-svg e-fas-check-double"
+                                                viewBox="<?php echo escape($checkIcon['viewBox']); ?>"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path d="<?php echo escape($checkIcon['path']); ?>"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="elementor-icon-list-text"
+                                            data-section="ingredientsBenefit<?php echo $index; ?>">
+                                            <?php echo escape($benefit); ?>
+                                            <?php echo generate_edit_button('ingredientsBenefit' . $index, 'text'); ?>
+                                        </span>
+                                    </li>
                                     <?php endforeach; ?>
                                 </ul>
                             </div>
@@ -499,7 +516,8 @@ function generate_edit_button($section, $type = 'text')
                         <div class="elementor-element elementor-element-c23979e elementor-widget elementor-widget-heading"
                             data-id="c23979e" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default" data-section="instructionsTitle">
+                                <h2 class="elementor-heading-title elementor-size-default"
+                                    data-section="instructionsTitle">
                                     <?php echo escape($instructionsSection['title'] ?? 'খাওয়ার নিয়ম'); ?>
                                     <?php echo generate_edit_button('instructionsTitle', 'text'); ?>
                                 </h2>
@@ -508,7 +526,8 @@ function generate_edit_button($section, $type = 'text')
                         <div class="elementor-element elementor-element-0d724e0 elementor-widget elementor-widget-heading"
                             data-id="0d724e0" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default" data-section="instructionsDescription">
+                                <h2 class="elementor-heading-title elementor-size-default"
+                                    data-section="instructionsDescription">
                                     <?php echo escape($instructionsSection['description'] ?? 'প্রতিরাতে খাওয়ার আধ ঘন্টা পরে ১ টি করে মোট ৪৫ দিন সেবন করতে হবে'); ?>
                                     <?php echo generate_edit_button('instructionsDescription', 'text'); ?>
                                 </h2>
@@ -535,117 +554,119 @@ function generate_edit_button($section, $type = 'text')
                         <div class="elementor-element elementor-element-468be44 elementor-widget elementor-widget-heading"
                             data-id="468be44" data-element_type="widget" data-widget_type="heading.default">
                             <div class="elementor-widget-container">
-                                <h2 class="elementor-heading-title elementor-size-default mb-4" data-section="contactInfoLabel"><?php echo escape($contactInfo['label']); ?></h2>  <?php echo generate_edit_button('contactInfoLabel','text'); ?>
+                                <h2 class="elementor-heading-title elementor-size-default mb-4"
+                                    data-section="contactInfoLabel"><?php echo escape($contactInfo['label']); ?></h2>
+                                <?php echo generate_edit_button('contactInfoLabel','text'); ?>
                                 <div class="flex flex-row items-center justify-center gap-4">
 
+                                    <div class="flex flex-row items-center justify-center gap-4">
 
+
+                                        <div class="flex items-center gap-3">
+                                            <a href="https://wa.me/<?php echo preg_replace('/[^0-9]/', '', $contactInfo['value']); ?>"
+                                                target="_blank" rel="noopener noreferrer" style="padding: 10px;"
+                                                class="inline-flex items-center transition-transform duration-300 hover:scale-110">
+                                                <img src="https://cdn0.iconfinder.com/data/icons/apple-apps/100/Apple_Phone-256.png"
+                                                    alt="Mobile" class="social-icon"
+                                                    style="width: 28px; height: 28px; margin-top: 10px;" loading="lazy">
+                                            </a>
+                                            <span class="elementor-heading-title elementor-size-default m-0"
+                                                data-section="mobileInfo">
+                                                <?php echo $mobileInfo['value'] ?>
+                                            </span>
+                                        </div>
+                                        <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
+                                        <?php echo generate_edit_button('mobileInfo'); ?>
+                                        <?php endif; ?>
+                                    </div>
                                     <div class="flex items-center gap-3">
-                                    <a href="https://wa.me/<?php echo preg_replace('/[^0-9]/', '', $contactInfo['value']); ?>"
-                                           target="_blank"
-                                           rel="noopener noreferrer"
-                                           style="padding: 10px;"
-                                           class="inline-flex items-center transition-transform duration-300 hover:scale-110">
+                                        <a href="https://wa.me/<?php echo preg_replace('/[^0-9]/', '', $contactInfo['value']); ?>"
+                                            target="_blank" rel="noopener noreferrer" style="padding: 10px;"
+                                            class="inline-flex items-center transition-transform duration-300 hover:scale-110">
                                             <img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Whatsapp2_colored_svg-256.png"
-                                                 alt="WhatsApp"
-                                                 class="social-icon"
-                                                 style="width: 28px; height: 28px; margin-top: 10px;"
-                                                 loading="lazy">
+                                                alt="WhatsApp" class="social-icon"
+                                                style="width: 28px; height: 28px; margin-top: 10px;" loading="lazy">
                                         </a>
-                                        <span class="elementor-heading-title elementor-size-default m-0" data-section="contactInfo">
+                                        <span class="elementor-heading-title elementor-size-default m-0"
+                                            data-section="contactInfo">
                                             <?php echo $contactInfo['value'] ?>
                                         </span>
                                     </div>
                                     <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
-                                        <?php echo generate_edit_button('contactInfo'); ?>
+                                    <?php echo generate_edit_button('contactInfo'); ?>
                                     <?php endif; ?>
                                 </div>
+
+
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section class="py-8 w-full flex flex-col items-center justify-center" style="text-align: center; margin-top: 20px;">
+        <section class="py-8 w-full flex flex-col items-center justify-center"
+            style="text-align: center; margin-top: 20px;">
 
             <div class="flex items-center justify-center gap-4">
                 <!-- Facebook Link -->
-                <a href="<?php echo escape($socialMedia['facebook']['url'] ?? '#'); ?>"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style="padding: 10px;"
+                <a href="<?php echo escape($socialMedia['facebook']['url'] ?? '#'); ?>" target="_blank"
+                    rel="noopener noreferrer" style="padding: 10px;"
                     class="transition-transform duration-300 hover:scale-110">
                     <img src="<?php echo escape($socialMedia['facebook']['icon'] ?? 'https://cdn1.iconfinder.com/data/icons/logotypes/32/facebook-256.png'); ?>"
-                        alt="Facebook"
-                        class="social-icon"
-                        loading="lazy">
+                        alt="Facebook" class="social-icon" loading="lazy">
 
                 </a>
                 <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
-                    <?php echo generate_edit_button('Facebook', 'text'); ?>
+                <?php echo generate_edit_button('Facebook', 'text'); ?>
                 <?php endif; ?>
 
                 <!-- Instagram Link -->
-                <a href="<?php echo escape($socialMedia['instagram']['url'] ?? '#'); ?>"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style="padding: 10px;"
+                <a href="<?php echo escape($socialMedia['instagram']['url'] ?? '#'); ?>" target="_blank"
+                    rel="noopener noreferrer" style="padding: 10px;"
                     class="transition-transform duration-300 hover:scale-110">
                     <img src="<?php echo escape($socialMedia['instagram']['icon'] ?? 'https://cdn2.iconfinder.com/data/icons/social-icons-33/128/Instagram-256.png'); ?>"
-                        alt="Instagram"
-                        class="social-icon"
-                        loading="lazy">
+                        alt="Instagram" class="social-icon" loading="lazy">
 
                 </a>
                 <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
-                    <?php echo generate_edit_button('Instagram', 'text'); ?>
+                <?php echo generate_edit_button('Instagram', 'text'); ?>
                 <?php endif; ?>
 
                 <!-- TikTok Link -->
-                <a href="<?php echo escape($socialMedia['tiktok']['url'] ?? '#'); ?>"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style="padding: 10px;"
+                <a href="<?php echo escape($socialMedia['tiktok']['url'] ?? '#'); ?>" target="_blank"
+                    rel="noopener noreferrer" style="padding: 10px;"
                     class="transition-transform duration-300 hover:scale-110">
                     <img src="<?php echo escape($socialMedia['tiktok']['icon'] ?? 'https://cdn0.iconfinder.com/data/icons/logos-brands-7/512/TikTok_logo_app0-256.png'); ?>"
-                        alt="TikTok"
-                        class="social-icon"
-                        loading="lazy">
+                        alt="TikTok" class="social-icon" loading="lazy">
 
                 </a>
                 <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
-                    <?php echo generate_edit_button('Tiktok', 'text'); ?>
+                <?php echo generate_edit_button('Tiktok', 'text'); ?>
                 <?php endif; ?>
 
                 <!-- YouTube Link -->
-                <a href="<?php echo escape($socialMedia['youtube']['url'] ?? '#'); ?>"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style="padding: 10px;"
+                <a href="<?php echo escape($socialMedia['youtube']['url'] ?? '#'); ?>" target="_blank"
+                    rel="noopener noreferrer" style="padding: 10px;"
                     class="transition-transform duration-300 hover:scale-110">
                     <img src="<?php echo escape($socialMedia['youtube']['icon'] ?? 'https://cdn4.iconfinder.com/data/icons/social-media-flat-7/64/Social-media_Youtube-256.png'); ?>"
-                        alt="YouTube"
-                        class="social-icon"
-                        loading="lazy">
+                        alt="YouTube" class="social-icon" loading="lazy">
 
                 </a>
                 <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
-                    <?php echo generate_edit_button('Youtube', 'text'); ?>
+                <?php echo generate_edit_button('Youtube', 'text'); ?>
                 <?php endif; ?>
 
                 <!-- IMO Link -->
-                <a href="<?php echo escape($socialMedia['imo']['url'] ?? '#'); ?>"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style="padding: 10px;"
+                <a href="<?php echo escape($socialMedia['imo']['url'] ?? '#'); ?>" target="_blank"
+                    rel="noopener noreferrer" style="padding: 10px;"
                     class="transition-transform duration-300 hover:scale-110">
                     <img src="<?php echo escape($socialMedia['imo']['icon'] ?? 'https://cdn3.iconfinder.com/data/icons/social-media-2169/24/social_media_social_media_logo_imo-256.png'); ?>"
-                        alt="IMO"
-                        class="social-icon"
-                        loading="lazy">
+                        alt="IMO" class="social-icon" loading="lazy">
 
                 </a>
                 <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
-                    <?php echo generate_edit_button('Imo', 'text'); ?>
+                <?php echo generate_edit_button('Imo', 'text'); ?>
                 <?php endif; ?>
             </div>
 
@@ -738,6 +759,7 @@ function generate_edit_button($section, $type = 'text')
         text-decoration: none;
         cursor: pointer;
     }
+
 </style>
 
 <div id="editModal">
@@ -897,7 +919,8 @@ function generate_edit_button($section, $type = 'text')
                 alert(data);
                 if (data.includes('success')) {
                     // Refresh the video element
-                    const videoElement = document.querySelector('video source[data-section="' + currentSection + '"]');
+                    const videoElement = document.querySelector('video source[data-section="' + currentSection +
+                        '"]');
                     if (videoElement) {
                         // Force video reload by updating timestamp
                         const currentSrc = videoElement.src;
@@ -955,64 +978,60 @@ function generate_edit_button($section, $type = 'text')
                 alert('An error occurred while uploading the image');
             });
     }
+
 </script>
 
 <!-- Add edit buttons for guarantee section images -->
 <?php if (isset($guaranteeSection['images']) && is_array($guaranteeSection['images'])): ?>
-    <?php foreach ($guaranteeSection['images'] as $index => $image): ?>
-        <div class="guarantee-image-container">
-            <img src="<?php echo escape($image['src']); ?>"
-                alt="<?php echo escape($image['alt'] ?? ''); ?>"
-                class="guarantee-image" />
-            <?php echo generate_edit_button('guaranteeImage' . $index, 'image'); ?>
-        </div>
-    <?php endforeach; ?>
+<?php foreach ($guaranteeSection['images'] as $index => $image): ?>
+<div class="guarantee-image-container">
+    <img src="<?php echo escape($image['src']); ?>" alt="<?php echo escape($image['alt'] ?? ''); ?>"
+        class="guarantee-image" />
+    <?php echo generate_edit_button('guaranteeImage' . $index, 'image'); ?>
+</div>
+<?php endforeach; ?>
 <?php endif; ?>
 
 <!-- Add edit buttons for solutions section images -->
 <?php if (isset($solutionsSection['images']) && is_array($solutionsSection['images'])): ?>
-    <?php foreach ($solutionsSection['images'] as $index => $image): ?>
-        <div class="solution-image-container">
-            <img src="<?php echo escape($image['src']); ?>"
-                alt="<?php echo escape($image['alt'] ?? ''); ?>"
-                class="solution-image" />
-            <?php echo generate_edit_button('solutionImage' . $index, 'image'); ?>
-        </div>
-    <?php endforeach; ?>
+<?php foreach ($solutionsSection['images'] as $index => $image): ?>
+<div class="solution-image-container">
+    <img src="<?php echo escape($image['src']); ?>" alt="<?php echo escape($image['alt'] ?? ''); ?>"
+        class="solution-image" />
+    <?php echo generate_edit_button('solutionImage' . $index, 'image'); ?>
+</div>
+<?php endforeach; ?>
 <?php endif; ?>
 
 <!-- Add edit button for product logo -->
 <?php if (isset($productSection['logo'])): ?>
-    <div class="product-logo-container">
-        <img src="<?php echo escape($productSection['logo']['src']); ?>"
-            alt="<?php echo escape($productSection['logo']['alt'] ?? ''); ?>"
-            class="product-logo" />
-        <?php echo generate_edit_button('productLogo', 'image'); ?>
-    </div>
+<div class="product-logo-container">
+    <img src="<?php echo escape($productSection['logo']['src']); ?>"
+        alt="<?php echo escape($productSection['logo']['alt'] ?? ''); ?>" class="product-logo" />
+    <?php echo generate_edit_button('productLogo', 'image'); ?>
+</div>
 <?php endif; ?>
 
 <!-- Add edit buttons for benefit images -->
 <?php if (isset($benefitsSection['benefits']) && is_array($benefitsSection['benefits'])): ?>
-    <?php foreach ($benefitsSection['benefits'] as $index => $benefit): ?>
-        <?php if (isset($benefit['image'])): ?>
-            <div class="benefit-image-container">
-                <img src="<?php echo escape($benefit['image']['src']); ?>"
-                    alt="<?php echo escape($benefit['image']['alt'] ?? ''); ?>"
-                    class="benefit-image" />
-                <?php echo generate_edit_button('benefitImage' . $index, 'image'); ?>
-            </div>
-        <?php endif; ?>
-    <?php endforeach; ?>
+<?php foreach ($benefitsSection['benefits'] as $index => $benefit): ?>
+<?php if (isset($benefit['image'])): ?>
+<div class="benefit-image-container">
+    <img src="<?php echo escape($benefit['image']['src']); ?>"
+        alt="<?php echo escape($benefit['image']['alt'] ?? ''); ?>" class="benefit-image" />
+    <?php echo generate_edit_button('benefitImage' . $index, 'image'); ?>
+</div>
+<?php endif; ?>
+<?php endforeach; ?>
 <?php endif; ?>
 
 <!-- Add edit buttons for instruction images -->
 <?php if (isset($instructionsSection['images']) && is_array($instructionsSection['images'])): ?>
-    <?php foreach ($instructionsSection['images'] as $index => $image): ?>
-        <div class="instruction-image-container">
-            <img src="<?php echo escape($image['src']); ?>"
-                alt="<?php echo escape($image['alt'] ?? ''); ?>"
-                class="instruction-image" />
-            <?php echo generate_edit_button('instructionImage' . $index, 'image'); ?>
-        </div>
-    <?php endforeach; ?>
+<?php foreach ($instructionsSection['images'] as $index => $image): ?>
+<div class="instruction-image-container">
+    <img src="<?php echo escape($image['src']); ?>" alt="<?php echo escape($image['alt'] ?? ''); ?>"
+        class="instruction-image" />
+    <?php echo generate_edit_button('instructionImage' . $index, 'image'); ?>
+</div>
+<?php endforeach; ?>
 <?php endif; ?>

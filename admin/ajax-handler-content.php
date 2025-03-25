@@ -107,6 +107,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $pageContent['contactInfo']['phone'] = $content;
         file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
         echo 'Content updated successfully!';
+    }
+    elseif ($section === 'mobileInfo' && isset($pageContent['mobileInfo'])) {
+        $pageContent['mobileInfo']['value'] = $content;
+        file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        echo 'Content updated successfully!';
     } elseif ($section === 'productTitle' && isset($pageContent['productSection'])) {
         $pageContent['productSection']['title'] = $content;
         file_put_contents($jsonPath, json_encode($pageContent, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
