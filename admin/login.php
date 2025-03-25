@@ -6,15 +6,15 @@ try {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
-        $referenceNo = $_SERVER['REFERENCE_NO']; // Get reference number from environment variable
+        $referenceNo = $_SERVER['REFERENCE_NO'];
 
-        // Query the database for the user with email
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->execute([$username]);
+        // Query the database for user with both email and reference number
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? AND reference_number = ?");
+        $stmt->execute([$username, $referenceNo]);
         $user = $stmt->fetch();
 
-        // Verify both password and reference number
-        if ($user && password_verify($password, $user['password']) && $referenceNo === $user['reference_number']) {
+        // Only verify password if user exists with matching email and reference
+        if ($user && password_verify($password, $user['password'])) {
             $_SESSION['logged_in'] = true;
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_role'] = $user['role'];
