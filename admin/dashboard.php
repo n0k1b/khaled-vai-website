@@ -11,7 +11,8 @@ require_once '../connection.php';
 
 $recentOrders = [];
 try {
-    $stmt = $pdo->query("SELECT order_number, customer_name, customer_address, customer_phone, total_price, order_status, created_at FROM orders ORDER BY created_at DESC LIMIT 5");
+    $referenceNo = $_SERVER['REFERENCE_NO'];
+    $stmt = $pdo->query("SELECT order_number, customer_name, customer_address, customer_phone, total_price, order_status, created_at FROM orders WHERE reference_no = '$referenceNo' ORDER BY created_at DESC LIMIT 5");
     $recentOrders = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     error_log('Error fetching recent orders: ' . $e->getMessage());
